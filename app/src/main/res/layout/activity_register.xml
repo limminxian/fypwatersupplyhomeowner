@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue"
+    tools:context=".registerActivity">
+
+    <TextView
+        android:id="@+id/registrationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="Homeowner Registration"
+        android:textColor="#04C9E1"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <EditText
+        android:id="@+id/passwordTxt"
+        android:layout_width="355dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/nameTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/nameTxt"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <EditText
+        android:id="@+id/retypePasswordTxt"
+        android:layout_width="355dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="re-type password"
+        android:inputType="textPassword"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/passwordTxt"
+        app:layout_constraintStart_toStartOf="@+id/passwordTxt"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTxt"
+        app:layout_constraintVertical_bias="0.02"
+        />
+
+    <EditText
+        android:id="@+id/emailTxt"
+        android:layout_width="355dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/phoneNoTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/phoneNoTxt"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNoTxt"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <EditText
+        android:id="@+id/streetTxt"
+        android:layout_width="355dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="street"
+        android:inputType="textPostalAddress"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/emailTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/emailTxt"
+        app:layout_constraintTop_toBottomOf="@+id/emailTxt"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <EditText
+        android:id="@+id/blockNoTxt"
+        android:layout_width="355dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="block no."
+        android:inputType="textPostalAddress"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/streetTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/streetTxt"
+        app:layout_constraintTop_toBottomOf="@+id/streetTxt"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <EditText
+        android:id="@+id/unitNoTxt"
+        android:layout_width="175dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="unit no."
+        android:inputType="textPostalAddress"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/blockNoTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/blockNoTxt"
+        app:layout_constraintTop_toBottomOf="@+id/blockNoTxt"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <EditText
+        android:id="@+id/postalCodeTxt"
+        android:layout_width="175dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="postal code"
+        android:inputType="textPostalAddress"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/blockNoTxt"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/unitNoTxt"
+        app:layout_constraintTop_toBottomOf="@+id/blockNoTxt"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <EditText
+        android:id="@+id/phoneNoTxt"
+        android:layout_width="355dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="phone number"
+        android:inputType="phone"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/retypePasswordTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/retypePasswordTxt"
+        app:layout_constraintTop_toBottomOf="@+id/retypePasswordTxt"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <EditText
+        android:id="@+id/nameTxt"
+        android:layout_width="355dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="textPersonName"
+        android:textColor="#0583BC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registrationTitle"
+        app:layout_constraintStart_toStartOf="@+id/registrationTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.144" />
+
+    <Spinner
+        android:id="@+id/houseTypesSpinner"
+        android:layout_width="201dp"
+        android:layout_height="32dp"
+        android:textColor="#0583BC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/postalCodeTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/unitNoTxt"
+        app:layout_constraintTop_toBottomOf="@+id/unitNoTxt"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <NumberPicker
+        android:id="@+id/householdSizePicker"
+        android:layout_width="33dp"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toEndOf="@+id/householdSizeMsg"
+        app:layout_constraintTop_toBottomOf="@+id/houseTypesSpinner"
+        app:layout_constraintVertical_bias="0.113" />
+
+    <TextView
+        android:id="@+id/householdSizeMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="household size"
+        android:textSize="15dp"
+        android:textColor="#0583BC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/houseTypesSpinner"
+        app:layout_constraintVertical_bias="0.196" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#02628E"
+        android:onClick="onRegisterBtnClick"
+        android:text="register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/householdSizePicker"
+        app:layout_constraintVertical_bias="0.157" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue"
+    tools:context=".profileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layoutToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageMenu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_menu"
+                app:tint="@color/colorWhite" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="serif"
+                android:text="Business Profile"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/companyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:text="Company Name"
+                    android:textColor="#04C9E1"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.015" />
+
+                <ImageView
+                    android:id="@+id/emailImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_email"
+                    app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/ratingBar"
+                    app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+                <TextView
+                    android:id="@+id/emailTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="companyName@email.com"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/emailImg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toEndOf="@+id/emailImg"
+                    app:layout_constraintTop_toTopOf="@+id/emailImg"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:id="@+id/phoneImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_phone"
+                    app:layout_constraintEnd_toEndOf="@+id/emailImg"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/emailImg"
+                    app:layout_constraintTop_toBottomOf="@+id/emailImg" />
+
+                <TextView
+                    android:id="@+id/phoneTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="61234567"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/phoneImg"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toEndOf="@+id/phoneImg"
+                    app:layout_constraintTop_toTopOf="@+id/phoneImg" />
+
+                <ImageView
+                    android:id="@+id/locationImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_location"
+                    app:layout_constraintEnd_toEndOf="@+id/phoneImg"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/phoneImg"
+                    app:layout_constraintTop_toBottomOf="@+id/phoneImg" />
+
+                <TextView
+                    android:id="@+id/addressTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="21 Anson Road S123456"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/locationImg"
+                    app:layout_constraintStart_toEndOf="@+id/locationImg"
+                    app:layout_constraintTop_toTopOf="@+id/locationImg"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/descriptionMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Description"
+                    app:layout_constraintEnd_toEndOf="@+id/locationImg"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/locationImg"
+                    app:layout_constraintTop_toBottomOf="@+id/locationImg" />
+
+                <TextView
+                    android:id="@+id/descriptionTxt"
+                    android:layout_width="303dp"
+                    android:layout_height="52dp"
+                    android:text="Water is a precious resource that is key to our survival. The smart water meter offers you more insights into your water usage, empowering you to be more water conscious and sustainable for the future."
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/descriptionMsg"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/descriptionMsg"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionMsg" />
+
+                <TextView
+                    android:id="@+id/serviceRateMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Service rates"
+                    app:layout_constraintEnd_toEndOf="@+id/serviceTxt"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/serviceTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/serviceTxt" />
+
+                <TextView
+                    android:id="@+id/serviceRateTxt"
+                    android:layout_width="122dp"
+                    android:layout_height="52dp"
+                    android:text="Water Supply: $8 per litre\nMaintenance: $100\nInstallation: $50\nUninstallation: $50"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/serviceRateMsg"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/serviceRateMsg"
+                    app:layout_constraintTop_toBottomOf="@+id/serviceRateMsg" />
+
+                <TextView
+                    android:id="@+id/serviceTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Water Supply Service:\nProvision of water \nMaintenance:\nServices in cases of leakages or other equipment faults\nInstallation:\nFixing services of equipments purchased from us\nUninstallation:\nRemoving services of equipments purchased from us"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/serviceMsg"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/serviceMsg"
+                    app:layout_constraintTop_toBottomOf="@+id/serviceMsg" />
+
+                <TextView
+                    android:id="@+id/serviceMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:text="Services"
+                    app:layout_constraintEnd_toEndOf="@+id/descriptionTxt"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/descriptionTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTxt" />
+
+                <!--                <ImageView-->
+<!--                    android:id="@+id/star1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:src="@drawable/ic_star"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/imageView"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/imageView"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/imageView"-->
+<!--                    app:layout_constraintVertical_bias="0.006" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/star2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/ic_star"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/star1"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/star1"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/star1" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/star3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/ic_star"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/star2"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/star2"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/star2" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/star4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/ic_star"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/star3"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/star3"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/star3" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/star5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/ic_star"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/star4"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/imageView"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/star4"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/star4"-->
+<!--                    app:layout_constraintVertical_bias="0.0" />-->
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:theme="@style/RatingBar"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                <Button
+                    android:id="@+id/subscriptionBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#02628E"
+                    android:text="Subscribe"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.468"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/serviceRateTxt" />
+
+                <Button
+                    android:id="@+id/unsubscriptionBtn"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#02628E"
+                    android:text="Unsubscribe"
+                    android:textAllCaps="false"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/reviewBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.581"
+                    app:layout_constraintStart_toEndOf="@+id/reviewBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/serviceRateTxt"
+                    app:layout_constraintTop_toTopOf="@id/reviewBtn"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:id="@+id/reviewBtn"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#02628E"
+                    android:text="Review"
+                    android:textAllCaps="false"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.171"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/serviceRateTxt" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="343dp"
+                    android:layout_height="109dp"
+                    android:layout_marginTop="11dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/companyTitle"
+                    app:layout_constraintHorizontal_bias="0.503"
+                    app:layout_constraintStart_toStartOf="@+id/companyTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/companyTitle"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_businesses" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="350dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="70dp"
+                    android:background="@drawable/review_style"
+                    app:layout_constraintBottom_toTopOf="@id/endOfScroll"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/serviceRateTxt">
+
+                    <TextView
+                        android:id="@+id/reviewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@string/reviewTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ListView
+                        android:id="@+id/listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/reviewTitle"></ListView>
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/reviewTxt"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:hint="Currently no reviews"-->
+                    <!--                        android:padding="10dp"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintHorizontal_bias="0.0"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@+id/reviewTitle" />-->
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/endOfScroll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="end"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/navigation_menu"
+        android:backgroundTint="@color/light_blue"
+        android:layout_gravity="start">
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
