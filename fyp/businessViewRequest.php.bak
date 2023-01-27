@@ -67,20 +67,20 @@ if (!empty($_POST['userID']))
 					}
 					
 					//reviews
-					// $stars = 0;
-					// $count = 0;
-					// $reviewsSQL = "SELECT NOOFSTAR FROM REVIEWS WHERE COMPANY = '".$companyID."'";
-					// $reviewsResult = mysqli_query($connection, $reviewsSQL);	
-					// if (mysqli_num_rows($reviewsResult) != 0) {
+					$stars = 0;
+					$count = 0;
+					$reviewsSQL = "SELECT NOOFSTARS FROM REVIEWS WHERE COMPANY = '".$companyID."'";
+					$reviewsResult = mysqli_query($connection, $reviewsSQL);	
+					if (mysqli_num_rows($reviewsResult) != 0) {
 
-						// while($reviewRow = mysqli_fetch_array($reviewsResult, MYSQLI_ASSOC)){
-							// $reviewStars = $reviewRow['NOOFSTARS'];
-							// $stars += $reviewStars;
-							// $count++;
-						// }
-					// } else {$noOfStars = 0; $count++;}
+						while($reviewRow = mysqli_fetch_array($reviewsResult, MYSQLI_ASSOC)){
+							$reviewStars = $reviewRow['NOOFSTARS'];
+							$stars += $reviewStars;
+							$count++;
+						}
+					} else {$noOfStars = 0; $count++;}
 					
-					// $avgStars = $stars/$count;
+					$avgStars = $stars/$count;
 					
 					//Set json object and append to the result
 					$companyObj = array("companyID" => $companyID,
@@ -89,7 +89,7 @@ if (!empty($_POST['userID']))
 										"street" => $street,
 										"postalCode" => $postalCode,
 										"description" => $description,
-										"noOfStars" => $noOfStars,
+										"noOfStars" => (int)$avgStars,
 										"noOfRate" => $noOfRate,
 										"subscribeStatus" => $subscribeStatus);
 					
