@@ -1,7 +1,7 @@
 <?php
 if (!empty($_POST['ticketID'])
 	) {
-	$connection = mysqli_connect("localhost", "root", "", "fyp");
+	$connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
 	$ticketID = $_POST['ticketID'];
     $result = array();
 	$description = null;
