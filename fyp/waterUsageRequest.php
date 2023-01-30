@@ -16,11 +16,11 @@ if (!empty($_POST['userID'])) {
 				$year = $waterUsageRow['YEAR'];
 				$waterUsage = $waterUsageRow['WATERUSAGE'];
 				
-				$arr = {"day" => $day, 
+				$arr = array("day" => $day, 
 					"month" => $month, 
 					"year" => $year, 
 					"waterUsage" => $waterUsage
-				};
+				);
 				
 				$waterArr[$date] = $arr;
 			}
