@@ -21,7 +21,7 @@ if (!empty($_POST['userID'])) {
 					"month" => $month, 
 					"year" => $year, 
 					"waterUsage" => $waterUsage
-				}
+				};
 				
 				$waterArr[$date] = $arr;
 			}
