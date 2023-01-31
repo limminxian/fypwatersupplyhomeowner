@@ -15,7 +15,7 @@ if( !empty($_POST['homeownerID']) &&
 	 
     if ($connection) {
 		
-		$companySQL = "SELECT NOOFSTARS, NOOFRATE FROM COMPANY WHERE ID = '".$companyID."'";
+		$companySQL = "SELECT NOOFSTAR, NOOFRATE FROM COMPANY WHERE ID = '".$companyID."'";
 		$companyResult = mysqli_query($connection, $companySQL);
 		if (mysqli_num_rows($companyResult) != 0) {
 			$companyRow = mysqli_fetch_assoc($companyResult);
@@ -28,14 +28,14 @@ if( !empty($_POST['homeownerID']) &&
 		$companyStars += $noOfRate;
 		$companyStars /= $noOfRate;
 				
-		$reviewSQL = "INSERT INTO REVIEWS (HOMEOWNER, COMPANY, REVIEW, NOOFSTARS) 
+		$reviewSQL = "INSERT INTO REVIEWS (HOMEOWNER, COMPANY, REVIEW, NOOFSTAR) 
 						VALUES('".$homeownerID."', '".$companyID."', '".$review."', '".$noOfStars."')";
 		$reviewResult = mysqli_query($connection, $reviewSQL);
 		if($reviewResult){
 
 		} else echo "failed to insert review";
 		
-		$updateCompanySQL = "INSERT INTO COMPANY (NOOFSTARS, NOOFRATE) VALUES('".$companyStars."', '".$noOfRate."')";
+		$updateCompanySQL = "INSERT INTO COMPANY (NOOFSTAR, NOOFRATE) VALUES('".$companyStars."', '".$noOfRate."')";
 		$updateCompanyResult = mysqli_query($connection, $updateCompanySQL);
 		if($updateCompanyResult){
 			echo "success";
