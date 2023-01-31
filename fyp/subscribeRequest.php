@@ -19,7 +19,7 @@ if( !empty($_POST['userID']) &&
 		$insertSubscribeSQL = "";
 		
 		if($subStatus == "true"){
-			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = 'NULL' WHERE ID = '".$userID."'";
+			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = NULL WHERE ID = '".$userID."'";
 			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', 'NULL', '".$date."')";
 		}
 		else{
