@@ -103,6 +103,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 				$reviews[$reviewName] = $reviewArr;
 				$count++;
 			}
+			$result["reviews"] = $reviews;
 		} else {$result = array("status" => "failed", "message" => "Failed to fetch review data"); $count++;}	
 	
 		//get avg stars from reviews
@@ -118,8 +119,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 						"noOfRate" => $noOfRate,
 						"services" => $services,
 						"serviceRates" => $serviceRates,
-						"subscribed" => $subscribed,
-						"reviews" => $reviews
+						"subscribed" => $subscribed
 						);
 		
     } else $result = array("status" => "failed", "message" => "Database connection failed");
