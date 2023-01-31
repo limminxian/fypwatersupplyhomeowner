@@ -14,14 +14,16 @@ if( !empty($_POST['userID']) &&
     if ($connection) {
 		
 		//find homeowner roles ID
-		$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = '".$companyID."' WHERE ID = '".$userID."'";
+		$updateUserSQL = "";
 						
 		$insertSubscribeSQL = "";
 		
 		if($subStatus == "true"){
+			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = 'NULL' WHERE ID = '".$userID."'";
 			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', 'NULL', '".$date."')";
 		}
 		else{
+			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = '".$companyID."' WHERE ID = '".$userID."'";
 			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."', 'NULL')";
 		}
 							
