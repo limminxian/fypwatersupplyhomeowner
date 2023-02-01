@@ -10,7 +10,7 @@ if (!empty($_POST['userID']) &&
 	$chatsArr = array();
 	
     if ($connection) {
-		$chatsSQL = "SELECT A.* , U.NAME FROM CHAT A JOIN TICKET B ON A.TICKET=B.ID JOIN USERS U ON A.SENDER=U.ID WHERE B.HOMEOWNER='".$userID."';";
+		$chatsSQL = "SELECT A.* , U.NAME FROM CHAT A JOIN TICKET B ON A.TICKET=B.ID JOIN USERS U ON A.SENDER=U.ID WHERE B.HOMEOWNER='".$userID."' AND B.ID='".$ticketID."';";
 		$chatsResult = mysqli_query($connection, $chatsSQL);	
 		if (mysqli_num_rows($chatsResult) != 0) {
 			while($chatsRow = mysqli_fetch_array($chatsResult, MYSQLI_ASSOC)){
