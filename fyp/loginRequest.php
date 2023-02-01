@@ -28,7 +28,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 					
 					} else $result = array("status" => "verify", "message" => "Please verify email first", "email" => $row['EMAIL']);
 					
-				} else $result = array("status" => "wrong password", "message" => "Retry with correct email and password");
+				} else $result = array("status" => "wrong password", "message" => "Retry with correct email and password", "userID" => $row['ID']);
 				
 			} else	$result = array("status" => "failed", "message" => "Homeowner account not found");
 			
