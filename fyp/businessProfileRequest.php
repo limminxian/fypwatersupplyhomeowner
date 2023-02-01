@@ -30,6 +30,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 	//stars is all ratings added
 	$stars = 0;
 	$count = 0;
+	$reviewed = false;
 
     if ($connection) {
 		//Find if user is subscribed to this company
@@ -43,6 +44,13 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 				$subscribed = false;
 			}
 		} else $result = array("status" => "failed", "message" => "Homeowner ID not found");	
+		
+		//find if user has reviewed
+		$reviewedSQL = "SELECT * FROM REVIEW WHERE HOMEOWNER ='".$userID."' AND COMPANY = '".$companyID."' ";
+		$reviewedResult = mysqli_query($connection, $reviewedSQL);
+		if(mysqli_num_rows($reviewedResult) != 0){
+			$reviewed = true;
+		} else $reviewed = false;
 		
 		//get company info
 		$companySQL = "SELECT COMPANY.*, USERS.EMAIL FROM COMPANY LEFT JOIN USERS ON COMPANY.ADMIN = USERS.ID WHERE COMPANY.ID = '".$companyID."'";
@@ -94,7 +102,8 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 						"noOfRate" => $noOfRate,
 						"services" => $services,
 						"serviceRates" => $serviceRates,
-						"subscribed" => $subscribed
+						"subscribed" => $subscribed,
+						"reviewed" => $reviewed
 						);
 		
 		//reviews
