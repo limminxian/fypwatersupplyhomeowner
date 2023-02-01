@@ -9,8 +9,6 @@ if( !empty($_POST['homeownerID']) &&
     $companyID = $_POST['companyID'];
 	$review = $_POST['review'];
     $noOfStars = $_POST['noOfStars'];
-	
-	$noOfStars = null;
 	$noOfRate = null;
 	 
     if ($connection) {
@@ -35,7 +33,7 @@ if( !empty($_POST['homeownerID']) &&
 		$companyStars += $noOfStars;
 		$companyStars /= $noOfRate;
 		
-		$updateCompanySQL = "UPDATE COMPANY SET NOOFSTAR = '".$noOfStars."', NOOFRATE = '".$noOfRate."' WHERE ID = '".$companyID."'";
+		$updateCompanySQL = "UPDATE COMPANY SET NOOFSTAR = '".$companyStars."', NOOFRATE = '".$noOfRate."' WHERE ID = '".$companyID."'";
 		$updateCompanyResult = mysqli_query($connection, $updateCompanySQL);
 		if($updateCompanyResult){
 			echo "success";
