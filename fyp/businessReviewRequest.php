@@ -35,7 +35,7 @@ if( !empty($_POST['homeownerID']) &&
 		$companyStars += $noOfStars;
 		$companyStars /= $noOfRate;
 		
-		$updateCompanySQL = "INSERT INTO COMPANY (NOOFSTAR, NOOFRATE) VALUES('".$companyStars."', '".$noOfRate."')";
+		$updateCompanySQL = "UPDATE COMPANY SET NOOFSTAR = '".$noOfStars."', NOOFRATE = '".$noOfRate."' WHERE ID = '".$companyID."'";
 		$updateCompanyResult = mysqli_query($connection, $updateCompanySQL);
 		if($updateCompanyResult){
 			echo "success";
