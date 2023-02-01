@@ -115,7 +115,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 						"description" => $description,
 						"email" => $email,
 						"phoneNo" => $phoneNo,
-						"noOfStars" => $avgStars,
+						"noOfStars" => $noOfStars,
 						"noOfRate" => $noOfRate,
 						"services" => $services,
 						"serviceRates" => $serviceRates,
