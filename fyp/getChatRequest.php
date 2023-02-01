@@ -5,12 +5,16 @@ if (!empty($_POST['userID']) &&
 	$connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
     $userID = $_POST['userID'];
     $ticketID = $_POST['ticketID'];
-
+	
     $result = array();
 	$chatsArr = array();
 	
     if ($connection) {
-		$chatsSQL = "SELECT A.* , U.NAME FROM CHAT A JOIN TICKET B ON A.TICKET=B.ID JOIN USERS U ON A.SENDER=U.ID WHERE B.HOMEOWNER='".$userID."' AND B.ID='".$ticketID."';";
+		$chatsSQL = "SELECT A.* , U.NAME FROM CHAT A 
+					JOIN TICKET B ON A.TICKET=B.ID 
+					JOIN USERS U ON A.SENDER=U.ID 
+					WHERE B.HOMEOWNER='".$userID."' 
+					AND B.ID='".$ticketID."';";
 		$chatsResult = mysqli_query($connection, $chatsSQL);	
 		if (mysqli_num_rows($chatsResult) != 0) {
 			while($chatsRow = mysqli_fetch_array($chatsResult, MYSQLI_ASSOC)){
@@ -26,7 +30,7 @@ if (!empty($_POST['userID']) &&
 									"text" => $text, 
 									);
 									
-				$chatsArr[$sender] = $arr;
+				$chatsArr[$date] = $arr;
 			}
 			$result = array("status" => "success", "message" => "Fetch data successful");
 			$result["chats"] = $chatsArr;
