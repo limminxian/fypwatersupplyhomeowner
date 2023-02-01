@@ -27,7 +27,7 @@ if( !empty($_POST['homeownerID']) &&
 		if (mysqli_num_rows($companyResult) != 0) {
 			$companyRow = mysqli_fetch_assoc($companyResult);
 			
-			$prevStars = $companyRow['NOOFSTARS'];
+			$prevStars = $companyRow['NOOFSTAR'];
 			$noOfRate = $companyRow['NOOFRATE'];
 		}
 		$companyStars = $prevStars*$noOfRate;
