@@ -11,7 +11,7 @@ if( !empty($_POST['userID']) &&
     if ($connection) {
 		
 		$chatSQL = "INSERT INTO CHAT VALUES (current_timestamp(), '".$ticketID."', '".$userID."', '".$text."')";
-		if(mysqli_query($connection, $updateUserSQL)){
+		if(mysqli_query($connection, $chatSQL)){
 			
 				echo "success";
 							
