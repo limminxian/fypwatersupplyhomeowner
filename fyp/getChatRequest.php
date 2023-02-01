@@ -5,7 +5,7 @@ if (!empty($_POST['userID']) &&
 	$connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
     $userID = $_POST['userID'];
     $ticketID = $_POST['ticketID'];
-	
+	$counter = 0;
     $result = array();
 	$chatsArr = array();
 	
@@ -30,7 +30,8 @@ if (!empty($_POST['userID']) &&
 									"text" => $text, 
 									);
 									
-				$chatsArr[$date] = $arr;
+				$chatsArr[$counter] = $arr;
+				$counter++;
 			}
 			$result = array("status" => "success", "message" => "Fetch data successful");
 			$result["chats"] = $chatsArr;
