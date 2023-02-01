@@ -46,7 +46,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 		} else $result = array("status" => "failed", "message" => "Homeowner ID not found");	
 		
 		//find if user has reviewed
-		$reviewedSQL = "SELECT * FROM REVIEW WHERE HOMEOWNER ='".$userID."' AND COMPANY = '".$companyID."' ";
+		$reviewedSQL = "SELECT * FROM REVIEWS WHERE HOMEOWNER ='".$userID."' AND COMPANY = '".$companyID."' ";
 		$reviewedResult = mysqli_query($connection, $reviewedSQL);
 		if(mysqli_num_rows($reviewedResult) != 0){
 			$reviewed = true;
