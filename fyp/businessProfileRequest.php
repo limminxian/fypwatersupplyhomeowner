@@ -84,6 +84,19 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 			
 		} else $result = array("status" => "failed", "message" => "Failed to fetch services data");		
 		
+		$result = array("status" => "success", "message" => "Fetch data successful", 
+						"name" => $name,
+						"address" => $address,
+						"description" => $description,
+						"email" => $email,
+						"phoneNo" => $phoneNo,
+						"noOfStars" => $noOfStars,
+						"noOfRate" => $noOfRate,
+						"services" => $services,
+						"serviceRates" => $serviceRates,
+						"subscribed" => $subscribed
+						);
+		
 		//reviews
 		$reviewsSQL = "SELECT R.*, U.NAME HOMEOWNERNAME FROM REVIEWS R JOIN HOMEOWNER H ON R.HOMEOWNER = H.ID JOIN USERS U ON H.ID = U.ID WHERE COMPANY = '".$companyID."'";
 		$reviewsResult = mysqli_query($connection, $reviewsSQL);	
@@ -105,22 +118,6 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 			}
 			$result["reviews"] = $reviews;
 		} else {$result = array("status" => "failed", "message" => "Failed to fetch review data"); $count++;}	
-	
-		//get avg stars from reviews
-		$avgStars = $stars/$count;
-		
-		$result = array("status" => "success", "message" => "Fetch data successful", 
-						"name" => $name,
-						"address" => $address,
-						"description" => $description,
-						"email" => $email,
-						"phoneNo" => $phoneNo,
-						"noOfStars" => $noOfStars,
-						"noOfRate" => $noOfRate,
-						"services" => $services,
-						"serviceRates" => $serviceRates,
-						"subscribed" => $subscribed
-						);
 		
     } else $result = array("status" => "failed", "message" => "Database connection failed");
 } else $result = array("status" => "failed", "message" => "All fields are required");
