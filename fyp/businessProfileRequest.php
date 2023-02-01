@@ -126,7 +126,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 				$count++;
 			}
 			$result["reviews"] = $reviews;
-		} else {$result = array("status" => "failed", "message" => "Failed to fetch review data"); $count++;}	
+		} 
 		
     } else $result = array("status" => "failed", "message" => "Database connection failed");
 } else $result = array("status" => "failed", "message" => "All fields are required");
