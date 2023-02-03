@@ -16,12 +16,12 @@ if( !empty($_POST['email']) &&
 		$mail->isSMTP();
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
-		$mail->Username = 'jtmw1012@gmail.com'; //gmail name
-		$mail->Password = 'gzlvkuyxqqbdqria'; //gmail app password
+		$mail->Username = 'simfyp22s404@gmail.com'; //gmail name
+		$mail->Password = 'krcmnobokhzcfstk'; //gmail app password
 		$mail->SMTPSecure = 'ssl';
 		$mail->Port = 465;
 		
-		$mail->setFrom('jtmw1012@gmail.com');
+		$mail->setFrom('simfyp22s404@gmail.com');
 		
 		$mail->addAddress($_POST["email"]);
 		
