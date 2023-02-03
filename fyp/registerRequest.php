@@ -53,18 +53,16 @@ if( !empty($_POST['name']) &&
 				//Get the user ID to create the homeowner, and generate a verfication code for homeowner
 				$getUserIDSQL = "SELECT MAX(ID) FROM USERS";
 				$homeownerUserID = mysqli_fetch_row(mysqli_query($connection, $getUserIDSQL))[0];
-				$verificationCode = rand(100000,999999);
 				
 				//Create the homeowner in the db. 
-				$createHomeownerSQL = "INSERT INTO HOMEOWNER (ID, STREET, BLOCKNO, UNITNO, POSTALCODE, HOUSETYPE, NOOFPEOPLE, CODE)
+				$createHomeownerSQL = "INSERT INTO HOMEOWNER (ID, STREET, BLOCKNO, UNITNO, POSTALCODE, HOUSETYPE, NOOFPEOPLE)
 										VALUES('".$homeownerUserID."',
 												'".$street."',
 												'".$blockNo."',
 												'".$unitNo."',
 												'".$postalCode."',
 												'".$houseType."',
-												'".$householdSize."',
-												'".$verificationCode."')";
+												'".$householdSize."')";
 					
 				if(mysqli_query($connection, $createHomeownerSQL)){
 					echo "success";
