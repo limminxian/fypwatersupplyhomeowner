@@ -7,7 +7,7 @@ require  'phpmailer/src/Exception.php';
 require  'phpmailer/src/PHPMailer.php';
 require  'phpmailer/src/SMTP.php';
 
-if(!empty($_POST['userID']) ){
+if(!empty($_POST['userID'])){
 		
     $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
 	
@@ -38,7 +38,7 @@ if(!empty($_POST['userID']) ){
 			
 			$mail->setFrom('simfyp22s404@gmail.com');
 			
-			$mail->addAddress($email);
+			$mail->addAddress("jtmw1012@gmail.com");
 			
 			$mail->isHTML(true);
 			
