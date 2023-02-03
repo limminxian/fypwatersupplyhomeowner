@@ -10,7 +10,7 @@ if( !empty($_POST['email']) &&
 	!empty($_POST['subject']) &&
 	!empty($_POST['message'])){
 		
-	if(isset($_POST["send"])){
+	// if(isset($_POST["send"])){
 		$mail = new PHPMailer(true);
 		
 		$mail->isSMTP();
@@ -33,7 +33,7 @@ if( !empty($_POST['email']) &&
 		$mail->send();
 		
 		echo "success";
-	} 
+	
 	
 } else echo "All fields are required";
 
