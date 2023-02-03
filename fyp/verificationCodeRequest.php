@@ -25,29 +25,31 @@ if(!empty($_POST['userID'])){
 		
 		$sql = "UPDATE USERS SET CODE = '".$verificationCode."' WHERE ID = '".$userID."' "; 
 		if(mysqli_query($connection, $sql)){
-			$mail = new PHPMailer(true);
-		
-			$mail->isSMTP();
-			$mail->Host = 'smtp.gmail.com';
-			$mail->SMTPAuth = true;
-			$mail->Username = 'simfyp22s404@gmail.com'; //gmail name
-			$mail->Password = 'krcmnobokhzcfstk'; //gmail app password
-			$mail->SMTPSecure = 'ssl';
-			$mail->Port = 465;
 			
-			$mail->setFrom('simfyp22s404@gmail.com');
-			
-			$mail->addAddress("jtmw1012@gmail.com");
-			
-			$mail->isHTML(true);
-			
-			$mail->Subject = "Verification code";
-			$mail->Body = "Verfication code is: ";
-			
-			$mail->send();
 			
 			echo "success";
 		}
 		
     } else echo "Database connection failed";
+	
+	$mail = new PHPMailer(true);
+		
+	$mail->isSMTP();
+	$mail->Host = 'smtp.gmail.com';
+	$mail->SMTPAuth = true;
+	$mail->Username = 'simfyp22s404@gmail.com'; //gmail name
+	$mail->Password = 'krcmnobokhzcfstk'; //gmail app password
+	$mail->SMTPSecure = 'ssl';
+	$mail->Port = 465;
+	
+	$mail->setFrom('simfyp22s404@gmail.com');
+	
+	$mail->addAddress("jtmw1012@gmail.com");
+	
+	$mail->isHTML(true);
+	
+	$mail->Subject = "Verification code";
+	$mail->Body = "Verfication code is: ";
+	
+	$mail->send();
 } else echo "All fields are required";
