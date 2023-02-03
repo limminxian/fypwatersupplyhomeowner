@@ -26,7 +26,7 @@ if( !empty($_POST['email']) &&
 		
 		$mail->isHTML(true);
 		
-		$mail->Subject = "Verification Code";
+		$mail->Subject = 'Verification Code';
 		$mail->Body = $_POST["message"];
 		
 		$mail->send();
