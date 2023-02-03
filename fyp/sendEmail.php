@@ -16,7 +16,7 @@ if( !empty($_POST['email']) &&
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
 		$mail->Username = 'simfyp22s404@gmail.com'; //gmail name
-		$mail->Password = 'krcmnobokhzcfstk'; //gmail app password
+		$mail->Password = 'rsrqgmfybnkbbzky'; //gmail app password
 		$mail->SMTPSecure = 'ssl';
 		$mail->Port = 465;
 		
