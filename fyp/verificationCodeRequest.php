@@ -52,6 +52,6 @@ if(!empty($_POST['userID'])){
 			"verificationCode" => $verificationCode);
 		}
 		
-    } else echo $result = array("status" => "failed", "message" => "Database connection failed"
+    } else echo $result = array("status" => "failed", "message" => "Database connection failed");
 } else $result = array("status" => "failed", "message" => "All fields are required");
 echo json_encode($result, JSON_PRETTY_PRINT);
