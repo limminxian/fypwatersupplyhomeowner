@@ -6,9 +6,9 @@ require  'phpmailer/src/Exception.php';
 require  'phpmailer/src/PHPMailer.php';
 require  'phpmailer/src/SMTP.php';
 
-if( !empty($_POST['email']) &&
-	!empty($_POST['subject']) &&
-	!empty($_POST['message'])){
+// if( !empty($_POST['email']) &&
+	// !empty($_POST['subject']) &&
+	// !empty($_POST['message'])){
 		
 	// if(isset($_POST["send"])){
 		$mail = new PHPMailer(true);
@@ -23,18 +23,18 @@ if( !empty($_POST['email']) &&
 		
 		$mail->setFrom('simfyp22s404@gmail.com');
 		
-		$mail->addAddress($_POST["email"]);
+		$mail->addAddress($email);
 		
 		$mail->isHTML(true);
 		
-		$mail->Subject = $_POST["subject"];
-		$mail->Body = $_POST["message"];
+		$mail->Subject = "Verification Code";
+		$mail->Body = $verificationCode;
 		
 		$mail->send();
 		
 		echo "success";
 	
 	
-} else echo "All fields are required";
+// } else echo "All fields are required";
 
 ?>
