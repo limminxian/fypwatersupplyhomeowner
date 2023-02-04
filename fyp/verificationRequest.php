@@ -24,7 +24,7 @@ if(!empty($_POST['email']) && !empty($_POST['verificationCode'])){
 			
 			$sql = "UPDATE USERS SET STATUS = 'ACTIVE' WHERE EMAIL = '".$email."' "; 
 			if(mysqli_query($connection, $sql)){
-				echo $code;
+				echo "success";
 			}
 			
 		} else echo "wrong verification code";				
