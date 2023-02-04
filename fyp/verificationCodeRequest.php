@@ -1,13 +1,13 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
-require  'phpmailer/src/Exception.php';
-require  'phpmailer/src/PHPMailer.php';
-require  'phpmailer/src/SMTP.php';
+// require  'phpmailer/src/Exception.php';
+// require  'phpmailer/src/PHPMailer.php';
+// require  'phpmailer/src/SMTP.php';
 $result = array();
-if(!empty($_POST['userID']) && !empty($_POST['email'])){
+if(!empty($_POST['userID'])){
 		
     $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
 	
@@ -26,26 +26,26 @@ if(!empty($_POST['userID']) && !empty($_POST['email'])){
 		
 		$sql = "UPDATE USERS SET CODE = '".$verificationCode."' WHERE ID = '".$userID."' "; 
 		if(mysqli_query($connection, $sql)){
-			$mail = new PHPMailer(true);
+			// $mail = new PHPMailer(true);
 		
-			$mail->isSMTP();
-			$mail->Host = 'smtp.gmail.com';
-			$mail->SMTPAuth = true;
-			$mail->Username = 'simfyp22s404@gmail.com'; //gmail name
-			$mail->Password = 'krcmnobokhzcfstk'; //gmail app password
-			$mail->SMTPSecure = 'ssl';
-			$mail->Port = 465;
+			// $mail->isSMTP();
+			// $mail->Host = 'smtp.gmail.com';
+			// $mail->SMTPAuth = true;
+			// $mail->Username = 'simfyp22s404@gmail.com'; //gmail name
+			// $mail->Password = 'krcmnobokhzcfstk'; //gmail app password
+			// $mail->SMTPSecure = 'ssl';
+			// $mail->Port = 465;
 			
-			$mail->setFrom('simfyp22s404@gmail.com');
+			// $mail->setFrom('simfyp22s404@gmail.com');
 			
-			$mail->addAddress($email);
+			// $mail->addAddress("jtmw1012@gmail.com");
 			
-			$mail->isHTML(true);
+			// $mail->isHTML(true);
 			
-			$mail->Subject = "Verification code";
-			$mail->Body = "Verfication code is: ".$verificationCode;
+			// $mail->Subject = "Verification code";
+			// $mail->Body = "Verfication code is: ".$verificationCode;
 			
-			$mail->send();
+			// $mail->send();
 			
 			$result = array("status" => "success", "message" => "Fetch data successful",
 			"email" => $email,
