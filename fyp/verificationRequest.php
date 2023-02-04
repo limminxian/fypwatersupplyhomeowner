@@ -22,7 +22,7 @@ if(!empty($_POST['email']) && !empty($_POST['verificationCode'])){
 		//set homeowner account status as active
 		if($verificationCode == $code){
 			
-			$sql = "UPDATE USERS SET STATUS = 'ACTIVE' WHERE ID = '".$userID."' "; 
+			$sql = "UPDATE USERS SET STATUS = 'ACTIVE' WHERE EMAIL = '".$email."' "; 
 			if(mysqli_query($connection, $sql)){
 				echo $code;
 			}
