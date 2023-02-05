@@ -30,14 +30,13 @@ if( !empty($_POST['name']) &&
 	
 	// php regex has to start and end with a / slash. 
 	$passwordRegex = '/^[^\s]*(?=\S{8,16})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])[^\s]*$/';
-	$emailRegex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^/';
 	$phoneRegex = '/^(8|9)\d{7}$/';
 	$postalCodeRegex = '/^[1-9]\d{5}$/';
 	
     if ($connection) {
 		if(preg_match($passwordRegex, $password)){
 			if($password == $retypePassword){
-				if(preg_match($emailRegex, $email)){
+				if(filter_var($email , FILTER_VALIDATE_EMAIL)){
 					if(preg_match($phoneRegex, $phoneNo)){
 						if(preg_match($postalCodeRegex, $postalCode)){
 							$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
