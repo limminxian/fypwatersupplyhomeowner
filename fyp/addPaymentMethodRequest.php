@@ -28,17 +28,28 @@ if( !empty($_POST['userID']) &&
 			$expMonth = substr($expiration, 2, 0);
 			$expYear = substr($expiration, -2);
 			if($expMonth < 32){
-				$cardSQL = "UPDATE PAYMENTMETHODS SET
-							CARDNO = '".$cardNo."',
-							NAME = '".$name."',
-							EXPMONTH = '".$expMonth."',
-							EXPYEAR = '".$expYear."'
-							CVC = '".$cvc."',
-							ADDRESS = '".$address."',
-							COUNTRY = '".$country."'
-							POSTALCODE = '".$postalCode."',
-							BRAND = '".$brand."'
-							WHERE CUSTOMER = '".$userID."'";
+				$cardSQL = "INSERT INTO PAYMENTMETHODS VALUES ('".$userID."',
+																'".$name."',
+																'".$country."',
+																'".$address."',
+																'".$country."',
+																'".$postalCode."',
+																'".$brand."',																
+																'".$expMonth."',
+																'".$expYear."',
+																'".$cvc."',
+																'".$cardNo."')";
+				// $cardSQL = "UPDATE PAYMENTMETHODS SET
+							// CARDNO = '".$cardNo."',
+							// NAME = '".$name."',
+							// EXPMONTH = '".$expMonth."',
+							// EXPYEAR = '".$expYear."',
+							// CVC = '".$cvc."',
+							// ADDRESS = '".$address."',
+							// COUNTRY = '".$country."',
+							// POSTALCODE = '".$postalCode."',
+							// BRAND = '".$brand."',
+							// WHERE CUSTOMER = '".$userID."'";
 				if(mysqli_query($connection, $cardSQL)){
 					echo "success";
 					
