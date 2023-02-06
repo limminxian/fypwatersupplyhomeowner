@@ -37,7 +37,7 @@ if( !empty($_POST['userID']) &&
 							ADDRESS = '".$address."',
 							COUNTRY = '".$country."'
 							POSTALCODE = '".$postalCode."',
-							BRAND = '".$brand."',
+							BRAND = '".$brand."'
 							WHERE CUSTOMER = '".$userID."'";
 				if(mysqli_query($connection, $cardSQL)){
 					echo "success";
