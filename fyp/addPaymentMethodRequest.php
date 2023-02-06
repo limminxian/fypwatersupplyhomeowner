@@ -39,7 +39,7 @@ if( !empty($_POST['userID']) &&
 							POSTALCODE = '".$postalCode."',
 							BRAND = '".$brand."',
 							WHERE CUSTOMER = '".$userID."'";
-				if(mysqli_query($connection, $updateHomeownerSQL)){
+				if(mysqli_query($connection, $cardSQL)){
 					echo "success";
 					
 				} else echo "failed updating payment methods";
