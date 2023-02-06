@@ -28,7 +28,7 @@ if( !empty($_POST['userID']) &&
 			$expMonth = substr($expiration, 2, 0);
 			$expYear = substr($expiration, -2);
 			if($expMonth < 32){
-				$cardSQL = "INSERT INTO PAYMENTMETHODS VALUES ('".$userID."',
+				$cardSQL = "INSERT INTO PAYMENTMETHODS (CUSTOMER, NAME, COUNTRY, ADDRESS, CITY, POSTALCODE, BRAND, EXPMONTH, EXPYEAR, CVC, CARDNO) VALUES ('".$userID."',
 																'".$name."',
 																'".$country."',
 																'".$address."',
