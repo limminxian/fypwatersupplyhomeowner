@@ -43,7 +43,7 @@ if( !empty($_POST['userID']) &&
 					echo "success";
 					
 				} else echo "failed updating payment methods";
-			} else echo "Please enter a valid date"
-		} else echo "Please enter in the correct format"		
+			} else echo "Please enter a valid date";
+		} else echo "Please enter in the correct format";
     } else echo "Database connection failed";
 } else echo "All fields are required";
