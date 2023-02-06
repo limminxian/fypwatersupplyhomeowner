@@ -23,7 +23,7 @@ if( !empty($_POST['userID']) &&
 	$expYear = null;
 	
     if ($connection) {
-		$expRegex = '/^[1-3][0-9]/[0-9]{2}/$';
+		$expRegex = '/^[1-3][0-9]\/[0-9]{2}/$';
 		if(preg_match($expRegex, $expiration)){
 			$expMonth = substr($expiration, 2, 0);
 			$expYear = substr($expiration, -2);
