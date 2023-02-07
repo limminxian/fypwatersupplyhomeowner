@@ -9,7 +9,7 @@ if (!empty($_POST['ticketID'])
 	$id = null;
     if ($connection) {
 		
-		$SQL = "SELECT A.*, B.NAME FROM TICKET A JOIN TICKETTYPE B ON A.TYPE = B.ID WHERE A.ID = '".$ticketID."'";
+		$SQL = "SELECT A.*, B.NAME FROM TICKET A JOIN SERVICETYPE B ON A.TYPE = B.ID WHERE A.ID = '".$ticketID."'";
 		$Result = mysqli_query($connection, $SQL);
 		if (mysqli_num_rows($Result) != 0){
 			$Row = mysqli_fetch_assoc($Result);

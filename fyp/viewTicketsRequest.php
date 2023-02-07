@@ -8,7 +8,7 @@ if (!empty($_POST['userID'])
 	$ticketsArr = array();
 	
     if ($connection) {
-		$ticketsSQL = "SELECT A.*, B.NAME FROM TICKET A JOIN TICKETTYPE B ON A.TYPE = B.ID WHERE A.HOMEOWNER = '".$userID."'";
+		$ticketsSQL = "SELECT A.*, B.NAME FROM TICKET A JOIN SERVICETYPE B ON A.TYPE = B.ID WHERE A.HOMEOWNER = '".$userID."'";
 		$ticketsResult = mysqli_query($connection, $ticketsSQL);	
 		if (mysqli_num_rows($ticketsResult) != 0) {
 			while($ticketRow = mysqli_fetch_array($ticketsResult, MYSQLI_ASSOC)){

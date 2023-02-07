@@ -9,7 +9,7 @@ if (!empty($_POST['userID'])
 	$description = $_POST['description'];
 
     if ($connection) {
-		$SQL = "SELECT ID FROM TICKETTYPE WHERE NAME = '".$type."'";
+		$SQL = "SELECT ID FROM SERVICETYPE WHERE NAME = '".$type."'";
 		$Result = mysqli_query($connection, $SQL);
 		$typeID = mysqli_fetch_row($Result)[0];
 		

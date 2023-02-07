@@ -9,14 +9,14 @@ if( !empty($_POST['ticketID']) &&
 	$description = $_POST['description'];
 
     if ($connection) {
-		$ticketTypeSQL = "SELECT ID FROM TICKETTYPE WHERE NAME = '".$type."'";
-		$ticketTypeResult = mysqli_query($connection, $ticketTypeSQL);
-		if(mysqli_num_rows($ticketTypeResult) != 0){
-			$ticketType = mysqli_fetch_row($ticketTypeResult)[0];
+		$serviceTypeSQL = "SELECT ID FROM SERVICETYPE WHERE NAME = '".$type."'";
+		$serviceTypeResult = mysqli_query($connection, $serviceTypeSQL);
+		if(mysqli_num_rows($serviceTypeResult) != 0){
+			$serviceType = mysqli_fetch_row($serviceTypeResult)[0];
 		} else $result = array("status" => "failed", "message" => "Ticket type fetch failed");			
 		
 		$SQL = "UPDATE TICKET SET 
-					TYPE = '".$ticketType."',
+					TYPE = '".$serviceType."',
 					DESCRIPTION = '".$description."'
 					WHERE ID = '".$ticketID."'";
 		if(mysqli_query($connection, $SQL)){
