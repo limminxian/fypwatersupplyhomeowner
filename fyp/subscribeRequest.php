@@ -14,9 +14,12 @@ if( !empty($_POST['userID']) &&
     if ($connection) {
 		
 		//find homeowner roles ID
-		$updateUserSQL = "";
-						
+		$updateUserSQL = "";				
 		$insertSubscribeSQL = "";
+		//get max id from ticket
+		//insert ticket and set ticket id to max + 1
+		//insert sub and set ticket to max + 1
+		
 		
 		if($subStatus == "true"){
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = NULL WHERE ID = '".$userID."'";
