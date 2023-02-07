@@ -114,7 +114,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 			while($reviewRow = mysqli_fetch_array($reviewsResult, MYSQLI_ASSOC)){
 				$homeownerName = $reviewRow['HOMEOWNERNAME'];
 				$review = $reviewRow['REVIEW'];
-				$reviewStars = $reviewRow['NOOFSTARS'];
+				$reviewStars = $reviewRow['NOOFSTAR'];
 				$stars += $reviewStars;
 				
 				$reviewArr = array("homeownerName" => $homeownerName,
