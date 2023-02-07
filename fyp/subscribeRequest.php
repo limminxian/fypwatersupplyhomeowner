@@ -102,7 +102,7 @@ if( !empty($_POST['userID']) &&
 			
 			//SUBSCRIBE
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = '".$companyID."' WHERE ID = '".$userID."'";
-			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."', 'NULL')";
+			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."', 'NULL', '".$maxID."')";
 		}
 							
 		if(mysqli_query($connection, $updateUserSQL)){
