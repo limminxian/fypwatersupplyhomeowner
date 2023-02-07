@@ -44,9 +44,17 @@ if( !empty($_POST['userID']) &&
 				echo "success";
 			} else echo "failed updating ticket, raise ticket failed";
 			
+			//get ticket id to set in subscribe table
+			$maxID = null;
+			$maxIDSQL = "SELECT MAX(ID) FROM TICKET";
+			$maxIDResult = mysqli_query($connection, $maxIDSQL);
+			if(mysqli_num_rows($maxIDResult) != 0){
+				$maxID = mysqli_fetch_row($maxIDResult)[0];
+			} else echo "failed to get max ticket id";			
+			
 			//set homeowner to unsubscribed
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = NULL WHERE ID = '".$userID."'";
-			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', 'NULL', '".$date."')";
+			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', 'NULL', '".$date."', '".$maxID."')";
 		}
 		else{
 			//get least workload customerservice staff
@@ -67,6 +75,14 @@ if( !empty($_POST['userID']) &&
 			if ($raiseTicketResult) {
 				echo "success";
 			} else echo "failed updating ticket, raise ticket failed";
+			
+			//get ticket id to set in subscribe table
+			$maxID = null;
+			$maxIDSQL = "SELECT MAX(ID) FROM TICKET";
+			$maxIDResult = mysqli_query($connection, $maxIDSQL);
+			if(mysqli_num_rows($maxIDResult) != 0){
+				$maxID = mysqli_fetch_row($maxIDResult)[0];
+			} else echo "failed to get max ticket id";	
 			
 			//set homeowner to subscribed
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = '".$companyID."' WHERE ID = '".$userID."'";
