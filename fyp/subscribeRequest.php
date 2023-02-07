@@ -49,7 +49,6 @@ if( !empty($_POST['userID']) &&
 								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner uninstallation when unsubscribed')";
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
-				echo "success";
 			} else echo "failed updating ticket, raise ticket failed";
 			
 			//TICKET ID
@@ -89,7 +88,6 @@ if( !empty($_POST['userID']) &&
 								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner installation when subscribed')";
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
-				echo "success";
 			} else echo "failed updating ticket, raise ticket failed";
 			
 			//TICKET ID
