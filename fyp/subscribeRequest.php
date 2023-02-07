@@ -38,7 +38,7 @@ if( !empty($_POST['userID']) &&
 			
 			//create a ticket for uninstallation
 			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
-								VALUES (".$userID.", ''uninstallation, ".$custID.", 'open','homeowner uninstallation when unsubscribed')";
+								VALUES (".$userID.", 'uninstallation', ".$custID.", 'open','homeowner uninstallation when unsubscribed')";
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
 				echo "success";
