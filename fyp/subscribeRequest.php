@@ -38,7 +38,7 @@ if( !empty($_POST['userID']) &&
 			
 			//SERVICE ID
 			$serviceType = null;
-			$serviceTypeSQL = "SELECT ID FROM SERVICE TYPE WHERE NAME = 'uninstallation'";
+			$serviceTypeSQL = "SELECT ID FROM SERVICETYPE WHERE NAME = 'uninstallation'";
 			$serviceTypeResult = mysqli_query($connection, $serviceTypeSQL);
 			if(mysqli_num_rows($serviceTypeResult) != 0){
 				$serviceType = mysqli_fetch_row($serviceTypeResult)[0];
@@ -78,7 +78,7 @@ if( !empty($_POST['userID']) &&
 			
 			//SERVICETYPE ID
 			$serviceType = null;
-			$serviceTypeSQL = "SELECT ID FROM SERVICE TYPE WHERE NAME = 'installation'";
+			$serviceTypeSQL = "SELECT ID FROM SERVICETYPE WHERE NAME = 'installation'";
 			$serviceTypeResult = mysqli_query($connection, $serviceTypeSQL);
 			if(mysqli_num_rows($serviceTypeResult) != 0){
 				$serviceType = mysqli_fetch_row($serviceTypeResult)[0];
