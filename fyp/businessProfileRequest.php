@@ -53,7 +53,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 		} else $reviewed = false;
 		
 		//get company info
-		$companySQL = "SELECT COMPANY.*, USERS.EMAIL, USER.NUMBER NUM FROM COMPANY LEFT JOIN USERS ON COMPANY.ADMIN = USERS.ID WHERE COMPANY.ID = '".$companyID."'";
+		$companySQL = "SELECT COMPANY.*, USERS.EMAIL, USERS.NUMBER NUM FROM COMPANY LEFT JOIN USERS ON COMPANY.ADMIN = USERS.ID WHERE COMPANY.ID = '".$companyID."'";
 		$companyResult = mysqli_query($connection, $companySQL);	
 		if (mysqli_num_rows($companyResult) != 0) {
 			$companyRow = mysqli_fetch_assoc($companyResult);
