@@ -25,7 +25,7 @@ if( !empty($_POST['userID']) &&
 		
 		
 		if($subStatus == "true"){
-			//get least workload customerservice staff
+			//WORKLOAD
 			$csSQL = 	"SELECT U.ID FROM 
 						USERS U JOIN STAFF S ON U.ID = S.ID 
 						JOIN ROLE R ON U.TYPE = R.ID 
@@ -36,15 +36,23 @@ if( !empty($_POST['userID']) &&
 				$custID = mysqli_fetch_row($csResult)[0];
 			} else echo "customer id fetch failed";
 			
-			//create a ticket for uninstallation
+			//SERVICE ID
+			$serviceType = null;
+			$serviceTypeSQL = "SELECT ID FROM SERVICE TYPE WHERE NAME = 'uninstallation'";
+			$serviceTypeResult = mysqli_query($connection, $serviceTypeSQL);
+			if(mysqli_num_rows($serviceTypeResult) != 0){
+				$serviceType = mysqli_fetch_row($serviceTypeResult)[0];
+			} else echo "failed to service type id";			
+		
+			//CREATE TICKET
 			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
-								VALUES ('".$userID."', 'uninstallation', '".$custID."', 'open','homeowner uninstallation when unsubscribed')";
+								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner uninstallation when unsubscribed')";
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
 				echo "success";
 			} else echo "failed updating ticket, raise ticket failed";
 			
-			//get ticket id to set in subscribe table
+			//TICKET ID
 			$maxID = null;
 			$maxIDSQL = "SELECT MAX(ID) FROM TICKET";
 			$maxIDResult = mysqli_query($connection, $maxIDSQL);
@@ -52,12 +60,12 @@ if( !empty($_POST['userID']) &&
 				$maxID = mysqli_fetch_row($maxIDResult)[0];
 			} else echo "failed to get max ticket id";			
 			
-			//set homeowner to unsubscribed
+			//UNSUBSCRIBE
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = NULL WHERE ID = '".$userID."'";
 			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', 'NULL', '".$date."', '".$maxID."')";
 		}
 		else{
-			//get least workload customerservice staff
+			//WORKLOAD
 			$csSQL = 	"SELECT U.ID FROM 
 						USERS U JOIN STAFF S ON U.ID = S.ID 
 						JOIN ROLE R ON U.TYPE = R.ID 
@@ -68,15 +76,23 @@ if( !empty($_POST['userID']) &&
 				$custID = mysqli_fetch_row($csResult)[0];
 			} else echo "customer id fetch failed";
 			
-			//create a ticket for installation
+			//SERVICETYPE ID
+			$serviceType = null;
+			$serviceTypeSQL = "SELECT ID FROM SERVICE TYPE WHERE NAME = 'installation'";
+			$serviceTypeResult = mysqli_query($connection, $serviceTypeSQL);
+			if(mysqli_num_rows($serviceTypeResult) != 0){
+				$serviceType = mysqli_fetch_row($serviceTypeResult)[0];
+			} else echo "failed to service type id";	
+			
+			//CREATE TICKET
 			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
-								VALUES ('".$userID."', 'installation', '".$custID."', 'open','homeowner installation when subscribed')";
+								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner installation when subscribed')";
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
 				echo "success";
 			} else echo "failed updating ticket, raise ticket failed";
 			
-			//get ticket id to set in subscribe table
+			//TICKET ID
 			$maxID = null;
 			$maxIDSQL = "SELECT MAX(ID) FROM TICKET";
 			$maxIDResult = mysqli_query($connection, $maxIDSQL);
@@ -84,7 +100,7 @@ if( !empty($_POST['userID']) &&
 				$maxID = mysqli_fetch_row($maxIDResult)[0];
 			} else echo "failed to get max ticket id";	
 			
-			//set homeowner to subscribed
+			//SUBSCRIBE
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = '".$companyID."' WHERE ID = '".$userID."'";
 			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."', 'NULL')";
 		}
