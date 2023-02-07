@@ -9,6 +9,7 @@ if( !empty($_POST['userID']) &&
 	$companyID = $_POST['companyID'];
 	$subStatus = $_POST['subStatus'];
 	$date = $_POST['date'];
+	$custID = null;
 
 
     if ($connection) {
@@ -16,16 +17,58 @@ if( !empty($_POST['userID']) &&
 		//find homeowner roles ID
 		$updateUserSQL = "";				
 		$insertSubscribeSQL = "";
-		//get max id from ticket
-		//insert ticket and set ticket id to max + 1
-		//insert sub and set ticket to max + 1
+		//insert ticket and set ticket id 
+		// $ticketSQL = "INSERT INTO TICKET (HOMEOWNER, CUSTOMERSERIVCE, STATUS, )";
+		//insert sub and set ticket to max ticket id
+		
+		
 		
 		
 		if($subStatus == "true"){
+			//get least workload customerservice staff
+			$csSQL = 	"SELECT U.ID FROM 
+						USERS U JOIN STAFF S ON U.ID = S.ID 
+						JOIN ROLE R ON U.TYPE = R.ID 
+						WHERE R.NAME = 'customerservice'
+						ORDER BY S.WORKLOAD ASC LIMIT 1";
+			$csResult = mysqli_query($connection, $csSQL);
+			if(mysqli_num_rows($csResult) != 0){
+				$custID = mysqli_fetch_row($csResult)[0];
+			} else echo "customer id fetch failed";
+			
+			//create a ticket for uninstallation
+			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
+								VALUES (".$userID.", ''uninstallation, ".$custID.", 'open','homeowner uninstallation when unsubscribed')";
+			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
+			if ($raiseTicketResult) {
+				echo "success";
+			} else echo "failed updating ticket, raise ticket failed";
+			
+			//set homeowner to unsubscribed
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = NULL WHERE ID = '".$userID."'";
 			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', 'NULL', '".$date."')";
 		}
 		else{
+			//get least workload customerservice staff
+			$csSQL = 	"SELECT U.ID FROM 
+						USERS U JOIN STAFF S ON U.ID = S.ID 
+						JOIN ROLE R ON U.TYPE = R.ID 
+						WHERE R.NAME = 'customerservice'
+						ORDER BY S.WORKLOAD ASC LIMIT 1";
+			$csResult = mysqli_query($connection, $csSQL);
+			if(mysqli_num_rows($csResult) != 0){
+				$custID = mysqli_fetch_row($csResult)[0];
+			} else echo "customer id fetch failed";
+			
+			//create a ticket for installation
+			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
+								VALUES (".$userID.", ''installation, ".$custID.", 'open','homeowner installation when subscribed')";
+			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
+			if ($raiseTicketResult) {
+				echo "success";
+			} else echo "failed updating ticket, raise ticket failed";
+			
+			//set homeowner to subscribed
 			$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = '".$companyID."' WHERE ID = '".$userID."'";
 			$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."', 'NULL')";
 		}
