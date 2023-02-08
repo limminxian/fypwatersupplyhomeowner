@@ -54,7 +54,7 @@ if( !empty($_POST['userID']) &&
 			
 			//INCREMENT WORKLOAD
 			$workLoad += 1;
-			$increWLSQL = "UPDATE STAFF (WORKLOAD) VALUES ('".$workLoad."')";
+			$increWLSQL = "UPDATE STAFF SET WORKLOAD = '".$workLoad."'"";
 			$increWLResult = mysqli_query($connection, $increWLSQL);	
 			if ($increWLResult) {
 			} else echo "failed incrementing workload failed";
@@ -103,7 +103,7 @@ if( !empty($_POST['userID']) &&
 			
 			//INCREMENT WORKLOAD
 			$workLoad += 1;
-			$increWLSQL = "UPDATE STAFF (WORKLOAD) VALUES ('".$workLoad."')";
+			$increWLSQL = "UPDATE STAFF SET WORKLOAD = '".$workLoad."'";
 			$increWLResult = mysqli_query($connection, $increWLSQL);	
 			if ($increWLResult) {
 			} else echo "failed incrementing workload failed";
