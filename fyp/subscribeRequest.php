@@ -10,6 +10,7 @@ if( !empty($_POST['userID']) &&
 	$subStatus = $_POST['subStatus'];
 	$date = $_POST['date'];
 	$custID = null;
+	$workLoad = null;
 
 
     if ($connection) {
@@ -21,19 +22,19 @@ if( !empty($_POST['userID']) &&
 		// $ticketSQL = "INSERT INTO TICKET (HOMEOWNER, CUSTOMERSERIVCE, STATUS, )";
 		//insert sub and set ticket to max ticket id
 		
-		
-		
-		
 		if($subStatus == "true"){
 			//WORKLOAD
-			$csSQL = 	"SELECT U.ID FROM 
+			$csSQL = 	"SELECT U.ID custID, S.WORKLOAD workLoad FROM 
 						USERS U JOIN STAFF S ON U.ID = S.ID 
 						JOIN ROLE R ON U.TYPE = R.ID 
 						WHERE R.NAME = 'customerservice'
 						ORDER BY S.WORKLOAD ASC LIMIT 1";
 			$csResult = mysqli_query($connection, $csSQL);
-			if(mysqli_num_rows($csResult) != 0){
-				$custID = mysqli_fetch_row($csResult)[0];
+			if (mysqli_num_rows($csResult) != 0) {
+				$Row = mysqli_fetch_assoc($csResult);
+				$custID = $Row['custID'];
+				$workLoad = $Row['workLoad'];
+				
 			} else echo "customer id fetch failed";
 			
 			//SERVICE ID
@@ -51,6 +52,13 @@ if( !empty($_POST['userID']) &&
 			if ($raiseTicketResult) {
 			} else echo "failed updating ticket, raise ticket failed";
 			
+			//INCREMENT WORKLOAD
+			$workLoad += 1;
+			$increWLSQL = "UPDATE STAFF (WORKLOAD) VALUES ('".$workLoad."')";
+			$increWLResult = mysqli_query($connection, $increWLSQL);	
+			if ($increWLResult) {
+			} else echo "failed incrementing workload failed";
+			
 			//TICKET ID
 			$maxID = null;
 			$maxIDSQL = "SELECT MAX(ID) FROM TICKET";
@@ -65,14 +73,17 @@ if( !empty($_POST['userID']) &&
 		}
 		else{
 			//WORKLOAD
-			$csSQL = 	"SELECT U.ID FROM 
+			$csSQL = 	"SELECT U.ID custID, S.WORKLOAD workLoad FROM 
 						USERS U JOIN STAFF S ON U.ID = S.ID 
 						JOIN ROLE R ON U.TYPE = R.ID 
 						WHERE R.NAME = 'customerservice'
 						ORDER BY S.WORKLOAD ASC LIMIT 1";
 			$csResult = mysqli_query($connection, $csSQL);
-			if(mysqli_num_rows($csResult) != 0){
-				$custID = mysqli_fetch_row($csResult)[0];
+			if (mysqli_num_rows($csResult) != 0) {
+				$Row = mysqli_fetch_assoc($csResult);
+				$custID = $Row['custID'];
+				$workLoad = $Row['workLoad'];
+				
 			} else echo "customer id fetch failed";
 			
 			//SERVICETYPE ID
@@ -89,6 +100,13 @@ if( !empty($_POST['userID']) &&
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
 			} else echo "failed updating ticket, raise ticket failed";
+			
+			//INCREMENT WORKLOAD
+			$workLoad += 1;
+			$increWLSQL = "UPDATE STAFF (WORKLOAD) VALUES ('".$workLoad."')";
+			$increWLResult = mysqli_query($connection, $increWLSQL);	
+			if ($increWLResult) {
+			} else echo "failed incrementing workload failed";
 			
 			//TICKET ID
 			$maxID = null;
