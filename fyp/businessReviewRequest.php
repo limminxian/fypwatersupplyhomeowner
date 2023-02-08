@@ -4,7 +4,7 @@ if( !empty($_POST['homeownerID']) &&
 	!empty($_POST['review']) && 
 	!empty($_POST['noOfStars'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7","68916e25", "heroku_80d6ea926f679b3");
+    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7","68916e25", "heroku_a43ceec7a5c075b");
 	$homeownerID = $_POST['homeownerID'];
     $companyID = $_POST['companyID'];
 	$review = $_POST['review'];

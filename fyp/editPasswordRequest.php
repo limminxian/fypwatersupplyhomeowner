@@ -1,6 +1,6 @@
 <?php
 if (!empty($_POST['userID']) && !empty($_POST['oldPassword']) && !empty($_POST['newPassword']) && !empty($_POST['cmfNewPassword'])) {
-	$connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7","68916e25", "heroku_80d6ea926f679b3");
+	$connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7","68916e25", "heroku_a43ceec7a5c075b");
     
 	$result = array();
 	$userID = $_POST['userID'];
