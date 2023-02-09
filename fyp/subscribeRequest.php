@@ -46,8 +46,8 @@ if( !empty($_POST['userID']) &&
 			} else echo "failed to service type id";			
 		
 			//CREATE TICKET
-			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
-								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner uninstallation when unsubscribed')";
+			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION, SERVICEDATE) 
+								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner uninstallation when unsubscribed', '".$date."')";
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
 			} else echo "failed updating ticket, raise ticket failed";
@@ -95,8 +95,8 @@ if( !empty($_POST['userID']) &&
 			} else echo "failed to service type id";	
 			
 			//CREATE TICKET
-			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
-								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner installation when subscribed')";
+			$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION, SERVICEDATE) 
+								VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner installation when subscribed','".$date."')";
 			$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 			if ($raiseTicketResult) {
 			} else echo "failed updating ticket, raise ticket failed";
