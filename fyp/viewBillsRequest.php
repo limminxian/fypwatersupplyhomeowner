@@ -14,7 +14,7 @@ if (!empty($_POST['userID'])
 	$name = null;
 	$addressLine = null;
 	$postalCode = null;
-	bool $haveService = false;
+	$haveService = false;
 	
     if ($connection) {
 		//Bills
