@@ -19,19 +19,21 @@ if (!empty($_POST['userID'])
     if ($connection) {
 		//Bills
 		$billsSQL = "SELECT BILL.*, SERVICETYPE.NAME SERVICENAME FROM BILL JOIN SERVICETYPE ON BILL.SERVICE = SERVICETYPE.ID 
-						WHERE HOMEOWNER = '".$userID."' AND MONTH(PAYMENTDATE) = '".$month."' AND YEAR(PAYMENTDATE) = '".$year."'";
+						WHERE HOMEOWNER = '".$userID."' AND MONTH(BILLINGDATE) = '".$month."' AND YEAR(BILLINGDATE) = '".$year."' AND PAYMENT IS NULL";
 		$billsResult = mysqli_query($connection, $billsSQL);	
 		if (mysqli_num_rows($billsResult) != 0) {
 			//loop through all services
 			while($billsRow = mysqli_fetch_array($billsResult, MYSQLI_ASSOC)){
+				$billID = $billsRow['ID'];
 				$serviceName = $billsRow['SERVICENAME'];
 				$amount = $billsRow['AMOUNT'];
 				$payment = $billsRow['PAYMENT'];
-				$paymentDate = $billsRow['PAYMENTDATE'];
+				$billingDate = $billsRow['BILLINGDATE'];
 
-				$service = array("amount" => $amount,
+				$service = array("ID" => $ID, 
+								 "amount" => $amount,
 								 "payment" => $payment,
-								 "paymentDate" => $paymentDate);
+								 "billlingDate" => $billlingDate);
 								 
 				$serviceBills[$serviceName] = $service;
 				$totalAmount += $amount;
@@ -58,7 +60,7 @@ if (!empty($_POST['userID'])
 			"serviceBills" => $serviceBills,
 			"totalAmount" => $totalAmount
 			);
-		} else $result = array("status" => "failed", "message" => "Failed to fetch payment data");	
+		} else $result = array("status" => "failed", "message" => "Failed to fetch billling data");	
 		
 		
     } else $result = array("status" => "failed", "message" => "Database connection failed");
