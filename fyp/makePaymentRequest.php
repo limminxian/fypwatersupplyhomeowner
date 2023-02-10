@@ -10,7 +10,7 @@ if( !empty($_POST['billIDSize']) &&
 
 
     if ($connection) {
-		bool $successful = true;
+		$successful = true;
 		
 		for($i = 0; $i < $billIDSize; $i++){
 			$billIDKey = "billID".$i;
