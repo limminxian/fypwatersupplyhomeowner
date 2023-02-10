@@ -33,7 +33,7 @@ if (!empty($_POST['userID'])
 				$service = array("ID" => $billID, 
 								 "amount" => $amount,
 								 "payment" => $payment,
-								 "billlingDate" => $billingDate);
+								 "billingDate" => $billingDate);
 								 
 				$serviceBills[$serviceName] = $service;
 				$totalAmount += $amount;
