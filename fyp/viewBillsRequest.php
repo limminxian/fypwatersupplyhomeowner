@@ -14,7 +14,7 @@ if (!empty($_POST['userID'])
 	$name = null;
 	$addressLine = null;
 	$postalCode = null;
-	
+	bool $haveService = false;
 	
     if ($connection) {
 		//Bills
@@ -22,6 +22,8 @@ if (!empty($_POST['userID'])
 						WHERE HOMEOWNER = '".$userID."' AND MONTH(BILLINGDATE) = '".$month."' AND YEAR(BILLINGDATE) = '".$year."' AND PAYMENT IS NULL";
 		$billsResult = mysqli_query($connection, $billsSQL);	
 		if (mysqli_num_rows($billsResult) != 0) {
+			$haveService = true;
+			
 			//loop through all services
 			while($billsRow = mysqli_fetch_array($billsResult, MYSQLI_ASSOC)){
 				$billID = $billsRow['ID'];
@@ -39,7 +41,7 @@ if (!empty($_POST['userID'])
 				$totalAmount += $amount;
 			}
 
-		} else $result = array("status" => "failed", "message" => "Failed to fetch bills data");	
+		} else $haveService = false;
 		
 		//get payment info
 		$userSQL = "SELECT U.NAME, H.* FROM USERS U JOIN HOMEOWNER H ON U.ID = H.ID WHERE U.ID = '".$userID."'";
@@ -57,11 +59,12 @@ if (!empty($_POST['userID'])
 			"name" => $name, 
 			"addressLine" => $addressLine, 
 			"postalCode" => $postalCode,
-			"serviceBills" => $serviceBills,
 			"totalAmount" => $totalAmount
 			);
+			if($haveService){
+				$result["serviceBills"] = $serviceBills;
+			}
 		} else $result = array("status" => "failed", "message" => "Failed to fetch billling data");	
-		
 		
     } else $result = array("status" => "failed", "message" => "Database connection failed");
 } else $result = array("status" => "failed", "message" => "All fields are required");
