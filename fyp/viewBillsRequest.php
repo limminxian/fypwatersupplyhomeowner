@@ -30,10 +30,10 @@ if (!empty($_POST['userID'])
 				$payment = $billsRow['PAYMENT'];
 				$billingDate = $billsRow['BILLINGDATE'];
 
-				$service = array("ID" => $ID, 
+				$service = array("ID" => $billID, 
 								 "amount" => $amount,
 								 "payment" => $payment,
-								 "billlingDate" => $billlingDate);
+								 "billlingDate" => $billingDate);
 								 
 				$serviceBills[$serviceName] = $service;
 				$totalAmount += $amount;
