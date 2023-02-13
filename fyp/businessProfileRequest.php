@@ -14,6 +14,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 	$description = null;
     $noOfStars = null;
     $noOfRate = null;
+	$logo = null;
 	$adminID = null;
 	$subscribed = null;
 
@@ -66,6 +67,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 			$phoneNo = $companyRow['NUM'];
 			$noOfStars = $companyRow['NOOFSTAR'];
 			$noOfRate = $companyRow['NOOFRATE'];
+			$logo = $companyRow['PHOTOPATH'];
 			$adminID = $companyRow['ADMIN'];
 			
 			$address = $street." SG:".$postalCode;
@@ -100,6 +102,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 						"phoneNo" => $phoneNo,
 						"noOfStars" => $noOfStars,
 						"noOfRate" => $noOfRate,
+						"logo" => $logo;
 						"services" => $services,
 						"serviceRates" => $serviceRates,
 						"subscribed" => $subscribed,
