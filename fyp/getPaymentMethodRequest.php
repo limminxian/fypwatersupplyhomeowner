@@ -1,5 +1,5 @@
 <?php
-// if (!empty($_POST['cardID'])) {
+if (!empty($_POST['cardID'])) {
 	$connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
     $cardID = $_POST['cardID'];
     $result = array();
@@ -45,5 +45,5 @@
 						
 		} else $result = array("status" => "failed", "message" => "Failed to fetch payment method data");				
     } else $result = array("status" => "failed", "message" => "Database connection failed");
-// } else $result = array("status" => "failed", "message" => "All fields are required");
+} else $result = array("status" => "failed", "message" => "All fields are required");
 echo json_encode($result, JSON_PRETTY_PRINT);
