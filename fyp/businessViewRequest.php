@@ -60,6 +60,7 @@ if (!empty($_POST['userID']))
 					$description = $companyRow['DESCRIPTION'];
 					$noOfStars = $companyRow['NOOFSTAR'];
 					$noOfRate = $companyRow['NOOFRATE'];
+					$logo = $companyRow['PHOTOPATH'];
 					
 					//Check if the user is subscribed to this company
 					if($subscribeID == $companyID){
@@ -91,6 +92,7 @@ if (!empty($_POST['userID']))
 										"description" => $description,
 										"noOfStars" => $noOfStars,
 										"noOfRate" => $noOfRate,
+										"logo" => $logo,
 										"subscribeStatus" => $subscribeStatus);
 					
 					$companyRow = "Company row ".(string)$rowNo;
