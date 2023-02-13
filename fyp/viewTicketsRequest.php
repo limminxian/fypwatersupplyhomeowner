@@ -13,7 +13,7 @@ if (!empty($_POST['userID'])
 		if (mysqli_num_rows($ticketsResult) != 0) {
 			while($ticketRow = mysqli_fetch_array($ticketsResult, MYSQLI_ASSOC)){
 				$id = $ticketRow["ID"];
-				$date = $ticketRow["DATE"];
+				$date = $ticketRow["CREATEDATE"];
 				$serviceType = $ticketRow["NAME"];
 				$description = $ticketRow["DESCRIPTION"];
 				$status = $ticketRow["STATUS"];
