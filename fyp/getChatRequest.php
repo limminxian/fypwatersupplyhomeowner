@@ -14,7 +14,7 @@ if (!empty($_POST['userID']) &&
 					JOIN USERS U ON A.SENDER=U.ID 
 					WHERE B.HOMEOWNER='".$userID."' 
 					AND B.ID='".$ticketID."'
-					ORDER BY A.DATE ASC";
+					ORDER BY A.CREATEDATE ASC";
 		$chatsResult = mysqli_query($connection, $chatsSQL);	
 		if (mysqli_num_rows($chatsResult) != 0) {
 			$counter = 0;
