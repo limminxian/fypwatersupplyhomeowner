@@ -61,7 +61,10 @@ if( !empty($_POST['userID']) &&
 		$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = '".$companyID."' WHERE ID = '".$userID."'";
 		$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."', 'subscribe', '".$maxID."')";
 		
-		if(date_format($date, "Y-m-d") < date("Y-m-d")){
+		$dateNow = new DateTime();
+		$date = new DateTime($date);
+		
+		if($date > $dateNow){
 			$dateResult = mysqli_query($connection, $dateSQL);
 			if(mysqli_num_rows($dateResult) == 0){
 				if(mysqli_query($connection, $updateUserSQL)){
