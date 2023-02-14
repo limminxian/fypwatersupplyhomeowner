@@ -33,19 +33,7 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 	$count = 0;
 	$reviewed = false;
 
-    if ($connection) {
-		//Find if user is subscribed to this company
-		$getSubSQL = "SELECT SUBSCRIBE FROM HOMEOWNER WHERE ID = '".$userID."'";
-		$getSubResult = mysqli_query($connection, $getSubSQL);
-		if(mysqli_num_rows($getSubResult) != 0){
-			$subscribeID = mysqli_fetch_row($getSubResult)[0];
-			if($subscribeID == $companyID){
-				$subscribed = true;
-			} else {
-				$subscribed = false;
-			}
-		} else $result = array("status" => "failed", "message" => "Homeowner ID not found");	
-		
+    if ($connection) {	
 		//find if user has reviewed
 		$reviewedSQL = "SELECT * FROM REVIEWS WHERE HOMEOWNER ='".$userID."' AND COMPANY = '".$companyID."' ";
 		$reviewedResult = mysqli_query($connection, $reviewedSQL);
@@ -105,9 +93,22 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 						"logo" => $logo,
 						"services" => $services,
 						"serviceRates" => $serviceRates,
-						"subscribed" => $subscribed,
 						"reviewed" => $reviewed
 						);
+		
+		//Find if user is subscribed to this company
+		$getSubSQL = "SELECT SUBSCRIBE FROM HOMEOWNER WHERE ID = '".$userID."'";
+		$getSubResult = mysqli_query($connection, $getSubSQL);
+		if(mysqli_num_rows($getSubResult) != 0){
+			$subscribeID = mysqli_fetch_row($getSubResult)[0];
+			if($subscribeID == $companyID){
+				$subscribed = true;
+			} else {
+				$subscribed = false;
+			}
+		} else $result = array("status" => "failed", "message" => "Homeowner ID not found");
+		$result["subscribed"] = $subscribed;
+		$result["subscribeID"] = $subscribeID;
 		
 		//reviews
 		$reviewsSQL = "SELECT R.*, U.NAME HOMEOWNERNAME FROM REVIEWS R JOIN HOMEOWNER H ON R.HOMEOWNER = H.ID JOIN USERS U ON H.ID = U.ID WHERE COMPANY = '".$companyID."'";
