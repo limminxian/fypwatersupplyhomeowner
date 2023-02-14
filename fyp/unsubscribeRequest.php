@@ -64,7 +64,7 @@ if( !empty($_POST['userID']) &&
 			if(mysqli_query($connection, $insertSubscribeSQL)){
 				echo "success";
 			} else echo "failed inserting subscription, subscription failed";
-		} else echo $result = array("status" => "failed", "message" => "failed updating user, edit profile failed"); 
+		} else echo "failed updating homeowner";
 		
 	} else echo "Database connection failed";
 } else echo "All fields are required";
