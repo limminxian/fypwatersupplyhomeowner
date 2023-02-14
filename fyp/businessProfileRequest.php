@@ -108,8 +108,10 @@ if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 			}
 		} else $result = array("status" => "failed", "message" => "Homeowner ID not found");
 		$result["subscribed"] = $subscribed;
-		$result["subscribeID"] = $subscribeID;
-		
+		if($subscribeID != null){
+			$result["subscribeID"] = $subscribeID;
+		}
+				
 		//reviews
 		$reviewsSQL = "SELECT R.*, U.NAME HOMEOWNERNAME FROM REVIEWS R JOIN HOMEOWNER H ON R.HOMEOWNER = H.ID JOIN USERS U ON H.ID = U.ID WHERE COMPANY = '".$companyID."'";
 		$reviewsResult = mysqli_query($connection, $reviewsSQL);	
