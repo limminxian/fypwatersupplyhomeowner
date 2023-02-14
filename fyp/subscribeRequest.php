@@ -24,7 +24,7 @@ if( !empty($_POST['userID']) &&
 		if($subbedCompany != null){
 			echo ("IS SUBBED TO".$subbedCompany);
 		} else {
-			echo "NOT SUBBED TO ANYONE"
+			echo "NOT SUBBED TO ANYONE";
 		}
 		
 		////WORKLOAD
