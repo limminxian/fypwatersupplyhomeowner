@@ -56,15 +56,21 @@ if( !empty($_POST['userID']) &&
 			$maxID = mysqli_fetch_row($maxIDResult)[0];
 		} else echo "failed to get max ticket id";			
 		
-		//UNSUBSCRIBE
+		//SUBSCRIBE
+		$dateSQL = "SELECT DATE FROM SUBSCRIBE WHERE DATE = '".$date."' AND HOMEOWNER = '".$userID."' AND CATEGORY = 'unsubscribe'";
 		$updateUserSQL = "UPDATE HOMEOWNER SET SUBSCRIBE = NULL WHERE ID = '".$userID."'";
 		$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."','unsubscribe', '".$maxID."')";
 		
-		if(mysqli_query($connection, $updateUserSQL)){
-			if(mysqli_query($connection, $insertSubscribeSQL)){
-				echo "success";
-			} else echo "failed inserting subscription, subscription failed";
-		} else echo "failed updating homeowner";
+		$dateResult = mysqli_query($connection, $dateSQL);
+		if(mysqli_num_rows($dateResult) == 0){
+			if(mysqli_query($connection, $updateUserSQL)){
+				
+					if(mysqli_query($connection, $insertSubscribeSQL)){
+						echo "success";
+					} else echo "failed inserting subscription, subscription failed";
+				
+			} else echo "failed updating user, edit profile failed";
+		} else echo "Date has already been chosen, please choose another date";
 		
 	} else echo "Database connection failed";
 } else echo "All fields are required";
