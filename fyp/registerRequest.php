@@ -27,6 +27,13 @@ if( !empty($_POST['name']) &&
 	$userRole = null;
 	$homeownerUserID = null;
 	$verificationCode = null;
+	$area = null; 
+	
+	$north = array("69","70","71","72","73","75","76");
+	$northeast = array("53","54","55","56","57","79","80","82");
+	$central = array("01","02","03","04","05","06","07","08","09","10","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","58","59","77","78");
+	$east =array("42","43","44","45","46","47","48","49","50","51","52","81");
+	$west = array("11","12","13","60","61","62","63","64","65","66","67","68");
 	
 	// php regex has to start and end with a / slash. 
 	$passwordRegex = '/^[^\s]*(?=\S{8,16})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])[^\s]*$/';
@@ -46,6 +53,20 @@ if( !empty($_POST['name']) &&
 							$roleSQL = mysqli_query($connection, $getRoleSQL);
 							$userRole = mysqli_fetch_row($roleSQL)[0];
 							
+							//get area
+							$areaCode = substr($postalCode, 0, 2);
+							if(in_array($areaCode, $north)){
+								$area = "north";
+							}elseif (in_array($areaCode, $northeast)){
+								$area = "northeast";
+							}elseif (in_array($areaCode, $central)){
+								$area = "central";
+							}elseif (in_array($areaCode, $east)){
+								$area = "east";
+							}elseif (in_array($areaCode, $west)){
+								$area = "west";
+							}
+							
 							//Create the user in the db. Status pending until email verified
 							$createUserSQL = "INSERT INTO USERS (NAME, NUMBER, EMAIL, PASSWORD, TYPE, STATUS)
 												VALUES('".$name."',
@@ -55,6 +76,7 @@ if( !empty($_POST['name']) &&
 														'".$userRole."',
 														'PENDING')";
 						
+
 							if(mysqli_query($connection, $createUserSQL)){
 								
 								//Get the user ID to create the homeowner, and generate a verfication code for homeowner
@@ -62,12 +84,13 @@ if( !empty($_POST['name']) &&
 								$homeownerUserID = mysqli_fetch_row(mysqli_query($connection, $getUserIDSQL))[0];
 								
 								//Create the homeowner in the db. 
-								$createHomeownerSQL = "INSERT INTO HOMEOWNER (ID, STREET, BLOCKNO, UNITNO, POSTALCODE, HOUSETYPE, NOOFPEOPLE)
+								$createHomeownerSQL = "INSERT INTO HOMEOWNER (ID, STREET, BLOCKNO, UNITNO, POSTALCODE, AREA, HOUSETYPE, NOOFPEOPLE)
 														VALUES('".$homeownerUserID."',
 																'".$street."',
 																'".$blockNo."',
 																'".$unitNo."',
 																'".$postalCode."',
+																'".$area."',
 																'".$houseType."',
 																'".$householdSize."')";
 									

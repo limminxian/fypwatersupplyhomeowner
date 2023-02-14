@@ -73,6 +73,6 @@ if( !empty($_POST['userID']) &&
 						} else echo "failed inserting subscription, subscription failed";
 				} else echo "failed updating user, edit profile failed";
 			} else echo "Date has already been chosen, please choose another date";
-		} else echo "Please select a valid date";
+		} else echo "Please select a date after today";
 	} else echo "Database connection failed";
 } else echo "All fields are required";
