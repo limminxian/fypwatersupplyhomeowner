@@ -63,7 +63,7 @@ if( !empty($_POST['userID']) &&
 		
 		if(mysqli_query($connection, $updateUserSQL)){
 			$dateResult = mysqli_query($connection, $dateSQL);
-			if(mysqli_num_rows($dateResult) != 0){
+			if(mysqli_num_rows($dateResult) == 0){
 				if(mysqli_query($connection, $insertSubscribeSQL)){
 					echo "success";
 				} else echo "failed inserting subscription, subscription failed";
