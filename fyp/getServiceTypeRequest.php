@@ -1,6 +1,5 @@
 <?php include_once 'config.php';
-if (!empty($_POST['userID'])
-) 
+if (!empty($_POST['userID'])) 
 {
 	$connection = getDB();
 	$ticketArr = array();

@@ -27,7 +27,7 @@ if (!empty($_POST['userID'])
 		
 		//services and rates 
 		$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
-							VALUES (".$userID.", ".$typeID.", ".$custID.", 'open','".$description."')";
+							VALUES (".$userID.", ".$typeID.", ".$custID.", 'pending','".$description."')";
 		$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 		if ($raiseTicketResult) {
 			echo "success";
