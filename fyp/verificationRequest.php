@@ -1,7 +1,7 @@
-<?php
+<?php include config.php
 if(!empty($_POST['email']) && !empty($_POST['verificationCode'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	
 	$email = $_POST['email'];
     $verificationCode = $_POST['verificationCode'];

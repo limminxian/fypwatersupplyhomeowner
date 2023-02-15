@@ -1,4 +1,4 @@
-<?php
+<?php include config.php
 if( !empty($_POST['cardID']) && 
 	!empty($_POST['cardNo']) && 
 	!empty($_POST['name']) && 
@@ -9,7 +9,7 @@ if( !empty($_POST['cardID']) &&
 	!empty($_POST['postalCode']) && 
 	!empty($_POST['brand'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	$cardID = $_POST['cardID'];
 	$cardNo = $_POST['cardNo'];
 	$name = $_POST['name'];
@@ -28,18 +28,7 @@ if( !empty($_POST['cardID']) &&
 			$expMonth = substr($expiration, 0,2);
 			$expYear = substr($expiration, -2);
 			if($expMonth < 32){
-				// $cardSQL = "INSERT INTO PAYMENTMETHODS (CUSTOMER, NAME, COUNTRY, ADDRESS, CITY, POSTALCODE, BRAND, EXPMONTH, EXPYEAR, CVC, CARDNO) 
-							// VALUES ('".$userID."',
-									// '".$name."',
-									// '".$country."',
-									// '".$address."',
-									// '".$country."',
-									// '".$postalCode."',
-									// '".$brand."',																
-									// '".$expMonth."',
-									// '".$expYear."',
-									// '".$cvc."',
-									// '".$cardNo."')";
+
 				$cardSQL = "UPDATE PAYMENTMETHODS SET
 							CARDNO = '".$cardNo."',
 							NAME = '".$name."',

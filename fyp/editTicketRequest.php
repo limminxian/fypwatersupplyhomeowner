@@ -1,9 +1,9 @@
-<?php
+<?php include config.php
 if( !empty($_POST['ticketID']) &&
 	!empty($_POST['type']) &&
 	!empty($_POST['description'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	$ticketID = $_POST['ticketID'];
 	$type = $_POST['type'];
 	$description = $_POST['description'];

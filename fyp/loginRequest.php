@@ -1,6 +1,6 @@
-<?php
+<?php include config.php
 if (!empty($_POST['email']) && !empty($_POST['password'])) {
-	$connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+	$connection = getDB();
     $email = $_POST['email'];
     $password = $_POST['password'];
     $result = array();

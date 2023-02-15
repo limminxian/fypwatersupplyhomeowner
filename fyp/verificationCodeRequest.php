@@ -1,4 +1,4 @@
-<?php
+<?php include config.php
 
 // use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;
@@ -9,7 +9,7 @@
 $result = array();
 if(!empty($_POST['userID']) && !empty($_POST['email'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	
 	$userID = $_POST['userID'];
 	$email = $_POST['email'];

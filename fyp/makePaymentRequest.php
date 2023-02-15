@@ -1,9 +1,9 @@
-<?php
+<?php include config.php
 if( !empty($_POST['billIDSize']) &&
 	!empty($_POST['paymentDate']) &&
 	!empty($_POST['cardID'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	$paymentDate = $_POST['paymentDate'];
 	$cardID = $_POST['cardID'];
 	$billIDSize = $_POST['billIDSize'];

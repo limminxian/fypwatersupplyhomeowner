@@ -1,4 +1,4 @@
-<?php
+<?php include config.php
 if( !empty($_POST['userID']) && 
 	!empty($_POST['cardNo']) && 
 	!empty($_POST['name']) && 
@@ -9,7 +9,7 @@ if( !empty($_POST['userID']) &&
 	!empty($_POST['postalCode']) && 
 	!empty($_POST['brand'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	$userID = $_POST['userID'];
 	$cardNo = $_POST['cardNo'];
 	$name = $_POST['name'];

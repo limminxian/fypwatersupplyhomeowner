@@ -1,10 +1,10 @@
-<?php
+<?php include config.php
 if( !empty($_POST['homeownerID']) && 
 	!empty($_POST['companyID']) &&
 	!empty($_POST['review']) && 
 	!empty($_POST['noOfStars'])){
 		
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	$homeownerID = $_POST['homeownerID'];
     $companyID = $_POST['companyID'];
 	$review = $_POST['review'];

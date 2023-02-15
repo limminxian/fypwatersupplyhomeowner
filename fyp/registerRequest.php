@@ -1,4 +1,4 @@
-<?php
+<?php include config.php
 if( !empty($_POST['name']) && 
 	!empty($_POST['password']) && 
 	!empty($_POST['retypePassword']) && 
@@ -11,7 +11,7 @@ if( !empty($_POST['name']) &&
 	!empty($_POST['houseType']) && 
 	!empty($_POST['householdSize'])){
 
-    $connection = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
+    $connection = getDB();
 	$name = $_POST['name'];
     $password = $_POST['password'];
 	$retypePassword = $_POST['retypePassword'];
