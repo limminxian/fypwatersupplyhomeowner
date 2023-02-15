@@ -1,4 +1,4 @@
-<?php include config.php
+<?php include_once 'config.php';
 
 // use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;

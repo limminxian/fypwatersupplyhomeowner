@@ -1,4 +1,4 @@
-<?php include config.php;
+<?php include_once 'config.php';
 if( !empty($_POST['userID']) && 
 	!empty($_POST['name']) && 
 	!empty($_POST['email']) && 

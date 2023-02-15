@@ -1,4 +1,4 @@
-<?php include config.php;
+<?php include_once 'config.php';
 if(!empty($_POST['email']) && !empty($_POST['verificationCode'])){
 		
     $connection = getDB();

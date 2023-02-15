@@ -1,4 +1,4 @@
-<?php include config.php;
+<?php include_once 'config.php';
 if( !empty($_POST['homeownerID']) && 
 	!empty($_POST['companyID']) &&
 	!empty($_POST['review']) && 
