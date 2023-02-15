@@ -20,7 +20,7 @@ if( !empty($_POST['email']) &&
 		$mail->SMTPSecure = 'ssl';
 		$mail->Port = 465;
 		
-		$mail->setFrom('simfyp22s404@gmail.com');
+		$mail->setFrom('hasna.ruhi16@gmail.com');
 		
 		$mail->addAddress($_POST["email"]);
 		
