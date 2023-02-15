@@ -31,6 +31,8 @@ if( !empty($_POST['email']) &&
 		
 		$mail->send();
 		
+		$mail->SMTPDebug = true;
+		
 		echo "success";
 	
 	
