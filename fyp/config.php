@@ -1,4 +1,4 @@
-<?php include config.php
+<?php 
 function getDB(){
 	$hostName = "us-cdbr-east-06.cleardb.net";
 	$username = "bc292174f8cae7";

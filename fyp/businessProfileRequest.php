@@ -1,4 +1,4 @@
-<?php include config.php
+<?php include config.php;
 if (!empty($_POST['userID']) && !empty($_POST['companyID'])) {
 	$connection = getDB();
     $userID = $_POST['userID'];

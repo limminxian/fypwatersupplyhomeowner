@@ -1,4 +1,4 @@
-<?php include config.php
+<?php include config.php;
 if( !empty($_POST['cardID']) && 
 	!empty($_POST['cardNo']) && 
 	!empty($_POST['name']) && 

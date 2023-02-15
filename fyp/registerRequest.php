@@ -1,4 +1,4 @@
-<?php include config.php
+<?php include config.php;
 if( !empty($_POST['name']) && 
 	!empty($_POST['password']) && 
 	!empty($_POST['retypePassword']) && 
