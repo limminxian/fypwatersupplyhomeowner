@@ -11,4 +11,4 @@ if(!empty($_POST['cardID'])){
 					
 		} else echo "failed updating payment methods";
     } else echo "Database connection failed";
-} else echo "All fields are required";
+} else echo "All fields are required".$cardID;
