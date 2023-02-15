@@ -7,7 +7,7 @@ if (!empty($_POST['userID'])) {
 	$description = $_POST['description'];
 
     if ($connection) {
-		$SQL = "SELECT SUBSCRIBE FROM SERVICETYPE WHERE ID = '".$userID."'";
+		$SQL = "SELECT SUBSCRIBE FROM HOMEOWNER WHERE ID = '".$userID."'";
 		$Result = mysqli_query($connection, $SQL);
 		$sub = mysqli_fetch_row($Result)[0];
 		if($sub != null){
