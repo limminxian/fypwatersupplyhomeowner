@@ -19,16 +19,20 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 			$userRole = mysqli_fetch_row($roleSQL)[0];
 			
 			if ($row['TYPE'] == $userRole){
-			
-				if ($email == $row['EMAIL'] && password_verify($password, $row['PASSWORD'])) {
+				
+				if ($email == $row['EMAIL']){
 					
-					if($row['STATUS'] == "ACTIVE"){ 
+					if (password_verify($password, $row['PASSWORD'])) {
+						
+						if($row['STATUS'] == "ACTIVE"){ 
+						
+							$result = array("status" => "success", "message" => "Login successful", "userID" => $row['ID']);
+						
+						} else $result = array("status" => "verify", "message" => "Please verify email first", "email" => $row['EMAIL']);
+						
+					} else $result = array("status" => "wrong password", "message" => "Retry with correct password", "userID" => $row['ID']);
 					
-						$result = array("status" => "success", "message" => "Login successful", "userID" => $row['ID']);
-					
-					} else $result = array("status" => "verify", "message" => "Please verify email first", "email" => $row['EMAIL']);
-					
-				} else $result = array("status" => "wrong password", "message" => "Retry with correct email and password", "userID" => $row['ID']);
+				} else $result = array("status" => "failed", "message" => "Retry with correct email", "userID" => $row['ID']);
 				
 			} else	$result = array("status" => "failed", "message" => "Homeowner account not found");
 			
