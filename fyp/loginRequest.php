@@ -20,7 +20,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 			
 			if ($row['TYPE'] == $userRole){
 				
-				// if ($email == $row['EMAIL']){
+				if ($email == $row['EMAIL']){
 					
 					if (password_verify($password, $row['PASSWORD'])) {
 						
@@ -32,7 +32,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 						
 					} else $result = array("status" => "wrong password", "message" => "Retry with correct password", "userID" => $row['ID']);
 					
-				// } else $result = array("status" => "failed", "message" => "Retry with correct email", "userID" => $row['ID']);
+				} else $result = array("status" => "failed", "message" => "Retry with correct email", "userID" => $row['ID']);
 				
 			} else	$result = array("status" => "failed", "message" => "Homeowner account not found");
 			
