@@ -1,11 +1,13 @@
 <?php include_once 'config.php';
 if (!empty($_POST['userID']) 
 	&& !empty($_POST['type'])
+	&& !empty($_POST['date'])
 	&& !empty($_POST['description'])) {
 	$connection = getDB();
 	
     $userID = $_POST['userID'];
 	$type = $_POST['type'];
+	$date = $_POST['date'];
 	$description = $_POST['description'];
 
     if ($connection) {
@@ -26,8 +28,8 @@ if (!empty($_POST['userID'])
 		} else echo "customer id fetch failed";
 		
 		//services and rates 
-		$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION) 
-							VALUES (".$userID.", ".$typeID.", ".$custID.", 'pending','".$description."')";
+		$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION, SERVICEDATE) 
+							VALUES (".$userID.", ".$typeID.", ".$custID.", 'pending','".$description."','".$date."')";
 		$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 		if ($raiseTicketResult) {
 			echo "success";
