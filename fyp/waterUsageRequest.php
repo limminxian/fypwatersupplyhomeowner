@@ -6,7 +6,7 @@ if (!empty($_POST['userID'])) {
 	$result = array();
 
 	if ($connection) {	
-		$waterUsageSQL = "SELECT RECORDDATE, DAY(RECORDDATE) DAY, MONTH(RECORDDATE) MONTH, YEAR(RECORDDATE) YEAR, WATERUSAGE FROM WATERUSAGE WHERE HOMEOWNER = '".$userID."'";
+		$waterUsageSQL = "SELECT RECORDDATE, DAY(RECORDDATE) DAY, MONTH(RECORDDATE) MONTH, YEAR(RECORDDATE) YEAR, WATERUSAGE(L) FROM WATERUSAGE WHERE HOMEOWNER = '".$userID."'";
 		$waterUsageResult = mysqli_query($connection, $waterUsageSQL);	
 		if (mysqli_num_rows($waterUsageResult) != 0) {
 			while($waterUsageRow = mysqli_fetch_array($waterUsageResult, MYSQLI_ASSOC)){
@@ -14,7 +14,7 @@ if (!empty($_POST['userID'])) {
 				$day = $waterUsageRow['DAY'];
 				$month = $waterUsageRow['MONTH'];
 				$year = $waterUsageRow['YEAR'];
-				$waterUsage = $waterUsageRow['WATERUSAGE'];
+				$waterUsage = $waterUsageRow['WATERUSAGE(L)'];
 				
 				$arr = array("day" => $day, 
 					"month" => $month, 
