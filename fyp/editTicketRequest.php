@@ -1,11 +1,11 @@
 <?php include_once 'config.php';
 if( !empty($_POST['ticketID']) &&
-	!empty($_POST['type']) &&
+	// !empty($_POST['type']) &&
 	!empty($_POST['description'])){
 		
     $connection = getDB();
 	$ticketID = $_POST['ticketID'];
-	$type = $_POST['type'];
+	// $type = $_POST['type'];
 	$description = $_POST['description'];
 
     if ($connection) {
@@ -16,7 +16,7 @@ if( !empty($_POST['ticketID']) &&
 		} else $result = array("status" => "failed", "message" => "Ticket type fetch failed");			
 		
 		$SQL = "UPDATE TICKET SET 
-					TYPE = '".$serviceType."',
+
 					DESCRIPTION = '".$description."'
 					WHERE ID = '".$ticketID."'";
 		if(mysqli_query($connection, $SQL)){
