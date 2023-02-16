@@ -36,7 +36,7 @@ if( !empty($_POST['userID']) &&
 	
 		//CREATE TICKET
 		$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION, SERVICEDATE) 
-							VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'open','homeowner uninstallation when unsubscribed', '".$date."')";
+							VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'pending','homeowner uninstallation when unsubscribed', '".$date."')";
 		$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
 		if ($raiseTicketResult) {
 		} else echo "failed updating ticket, raise ticket failed";
