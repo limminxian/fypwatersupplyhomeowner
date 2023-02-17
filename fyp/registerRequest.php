@@ -67,45 +67,61 @@ if( !empty($_POST['name']) &&
 								$area = "west";
 							}
 							
-							
-							
-								//Create the user in the db. Status pending until email verified
-								$createUserSQL = "INSERT INTO USERS (NAME, NUMBER, EMAIL, PASSWORD, TYPE, STATUS)
-													VALUES('".$name."',
-															'".$phoneNo."',
-															'".$email."',
-															'".$password."',
-															'".$userRole."',
-															'PENDING')";
-								if(mysqli_query($connection, $createUserSQL)){
-									
-									//Get the user ID to create the homeowner, and generate a verfication code for homeowner
-									$getUserIDSQL = "SELECT MAX(ID) FROM USERS";
-									$homeownerUserID = mysqli_fetch_row(mysqli_query($connection, $getUserIDSQL))[0];
-									
-									//Create the homeowner in the db. 
-									$createHomeownerSQL = "INSERT INTO HOMEOWNER (ID, STREET, BLOCKNO, UNITNO, POSTALCODE, AREA, HOUSETYPE, NOOFPEOPLE)
-															VALUES('".$homeownerUserID."',
-																	'".$street."',
-																	'".$blockNo."',
-																	'".$unitNo."',
-																	'".$postalCode."',
-																	'".$area."',
-																	'".$houseType."',
-																	'".$householdSize."')";
-									try{
-									  mysqli_query($connection, $createHomeownerSQL);
-									  echo "success";
-									}catch(mysqli_sql_exception $e){
-									  echo(mysqli_error($conn));
-									}
-									// if(mysqli_query($connection, $createHomeownerSQL)){
-										// echo "success";
-									// } else echo "failed creating homeowner, registration failed";
-										
-								} else echo "failed creating user, registration failed";	
+							//Create the user in the db. Status pending until email verified
+							$createUserSQL = "INSERT INTO USERS (NAME, NUMBER, EMAIL, PASSWORD, TYPE, STATUS)
+												VALUES('".$name."',
+														'".$phoneNo."',
+														'".$email."',
+														'".$password."',
+														'".$userRole."',
+														'PENDING')";
+						
+
+							try{
+								mysqli_query($connection, $createUserSQL);
+								//Get the user ID to create the homeowner, and generate a verfication code for homeowner
+								$getUserIDSQL = "SELECT MAX(ID) FROM USERS";
+								$homeownerUserID = mysqli_fetch_row(mysqli_query($connection, $getUserIDSQL))[0];
 								
+								//Create the homeowner in the db. 
+								$createHomeownerSQL = "INSERT INTO HOMEOWNER (ID, STREET, BLOCKNO, UNITNO, POSTALCODE, AREA, HOUSETYPE, NOOFPEOPLE)
+														VALUES('".$homeownerUserID."',
+																'".$street."',
+																'".$blockNo."',
+																'".$unitNo."',
+																'".$postalCode."',
+																'".$area."',
+																'".$houseType."',
+																'".$householdSize."')";
+									
+								if(mysqli_query($connection, $createHomeownerSQL)){
+									echo "success";
+								} else echo "failed creating homeowner, registration failed";
+							}catch(mysqli_sql_exception $e){
+							  echo (mysqli_error($connection));
+							}
+							// if(mysqli_query($connection, $createUserSQL)){
 								
+								////Get the user ID to create the homeowner, and generate a verfication code for homeowner
+								// $getUserIDSQL = "SELECT MAX(ID) FROM USERS";
+								// $homeownerUserID = mysqli_fetch_row(mysqli_query($connection, $getUserIDSQL))[0];
+								
+								////Create the homeowner in the db. 
+								// $createHomeownerSQL = "INSERT INTO HOMEOWNER (ID, STREET, BLOCKNO, UNITNO, POSTALCODE, AREA, HOUSETYPE, NOOFPEOPLE)
+														// VALUES('".$homeownerUserID."',
+																// '".$street."',
+																// '".$blockNo."',
+																// '".$unitNo."',
+																// '".$postalCode."',
+																// '".$area."',
+																// '".$houseType."',
+																// '".$householdSize."')";
+									
+								// if(mysqli_query($connection, $createHomeownerSQL)){
+									// echo "success";
+								// } else echo "failed creating homeowner, registration failed";
+									
+							// } else echo "failed creating user, registration failed";	
 						} else echo "Please insert a valid postal code that includes 6 digits";
 					} else echo "Please insert a valid phone number that starts with 6, 8 or 9 and includes 8 digits";
 				} else echo "Please insert a valid email address";
