@@ -34,13 +34,6 @@ if( !empty($_POST['userID']) &&
 			$serviceType = mysqli_fetch_row($serviceTypeResult)[0];
 		} else echo "failed to service type id";	
 		
-		//CREATE TICKET
-		$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION, SERVICEDATE) 
-							VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'pending','homeowner installation when subscribed','".$date."')";
-		$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
-		if ($raiseTicketResult) {
-		} else echo "failed updating ticket, raise ticket failed";
-		
 		//INCREMENT WORKLOAD
 		$workLoad += 1;
 		$increWLSQL = "UPDATE STAFF SET WORKLOAD = '".$workLoad."' WHERE ID = '".$custID."'";
@@ -67,6 +60,14 @@ if( !empty($_POST['userID']) &&
 		if($date > $dateNow){
 			$dateResult = mysqli_query($connection, $dateSQL);
 			if(mysqli_num_rows($dateResult) == 0){
+				
+				//CREATE TICKET
+				$raiseTicketSQL = "INSERT INTO TICKET ( HOMEOWNER, TYPE, CUSTOMERSERVICE, STATUS, DESCRIPTION, SERVICEDATE) 
+									VALUES ('".$userID."', '".$serviceType."', '".$custID."', 'pending','homeowner installation when subscribed','".$date."')";
+				$raiseTicketResult = mysqli_query($connection, $raiseTicketSQL);	
+				if ($raiseTicketResult) {
+				} else echo "failed updating ticket, raise ticket failed";
+				
 				if(mysqli_query($connection, $updateUserSQL)){
 						if(mysqli_query($connection, $insertSubscribeSQL)){
 							echo "success";
