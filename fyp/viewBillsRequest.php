@@ -1,10 +1,12 @@
 <?php include_once 'config.php';
 if (!empty($_POST['userID'])
+	&& !empty($_POST['curr'])
 	&& !empty($_POST['month'])
 	&& !empty($_POST['year'])) {
 		
 	$connection = getDB();
     $userID = $_POST['userID'];
+	$curr = $_POST['curr'];
 	$month = $_POST['month'];
 	$year = $_POST['year'];
     $result = array();
@@ -18,30 +20,60 @@ if (!empty($_POST['userID'])
 	
     if ($connection) {
 		//Bills
-		$billsSQL = "SELECT BILL.*, SERVICETYPE.NAME SERVICENAME FROM BILL JOIN SERVICETYPE ON BILL.SERVICE = SERVICETYPE.ID 
+		
+		if($curr == "true"){
+			//Display unpaid bills for current month			
+			$billsSQL = "SELECT BILL.*, SERVICETYPE.NAME SERVICENAME FROM BILL JOIN SERVICETYPE ON BILL.SERVICE = SERVICETYPE.ID 
 						WHERE HOMEOWNER = '".$userID."' AND MONTH(BILLINGDATE) = '".$month."' AND YEAR(BILLINGDATE) = '".$year."' AND PAYMENT IS NULL";
-		$billsResult = mysqli_query($connection, $billsSQL);	
-		if (mysqli_num_rows($billsResult) != 0) {
-			$haveService = true;
-			
-			//loop through all services
-			while($billsRow = mysqli_fetch_array($billsResult, MYSQLI_ASSOC)){
-				$billID = $billsRow['ID'];
-				$serviceName = $billsRow['SERVICENAME'];
-				$amount = $billsRow['AMOUNT'];
-				$payment = $billsRow['PAYMENT'];
-				$billingDate = $billsRow['BILLINGDATE'];
+			$billsResult = mysqli_query($connection, $billsSQL);	
+			if (mysqli_num_rows($billsResult) != 0) {
+				$haveService = true;
+				
+				//loop through all services
+				while($billsRow = mysqli_fetch_array($billsResult, MYSQLI_ASSOC)){
+					$billID = $billsRow['ID'];
+					$serviceName = $billsRow['SERVICENAME'];
+					$amount = $billsRow['AMOUNT'];
+					$payment = $billsRow['PAYMENT'];
+					$billingDate = $billsRow['BILLINGDATE'];
 
-				$service = array("ID" => $billID, 
-								 "amount" => $amount,
-								 "payment" => $payment,
-								 "billingDate" => $billingDate);
-								 
-				$serviceBills[$serviceName] = $service;
-				$totalAmount += $amount;
-			}
+					$service = array("ID" => $billID, 
+									 "amount" => $amount,
+									 "payment" => $payment,
+									 "billingDate" => $billingDate);
+									 
+					$serviceBills[$serviceName] = $service;
+					$totalAmount += $amount;
+				}
 
-		} else $haveService = false;
+			} else $haveService = false;
+		} else {
+			//Display paid bills for previous months
+			$billsSQL = "SELECT BILL.*, SERVICETYPE.NAME SERVICENAME FROM BILL JOIN SERVICETYPE ON BILL.SERVICE = SERVICETYPE.ID 
+							WHERE HOMEOWNER = '".$userID."' AND MONTH(BILLINGDATE) = '".$month."' AND YEAR(BILLINGDATE) = '".$year."' AND PAYMENT IS NOT NULL";
+			$billsResult = mysqli_query($connection, $billsSQL);	
+			if (mysqli_num_rows($billsResult) != 0) {
+				$haveService = true;
+				
+				//loop through all services
+				while($billsRow = mysqli_fetch_array($billsResult, MYSQLI_ASSOC)){
+					$billID = $billsRow['ID'];
+					$serviceName = $billsRow['SERVICENAME'];
+					$amount = $billsRow['AMOUNT'];
+					$payment = $billsRow['PAYMENT'];
+					$billingDate = $billsRow['BILLINGDATE'];
+
+					$service = array("ID" => $billID, 
+									 "amount" => $amount,
+									 "payment" => $payment,
+									 "billingDate" => $billingDate);
+									 
+					$serviceBills[$serviceName] = $service;
+					$totalAmount += $amount;
+				}
+
+			} else $haveService = false;
+		}
 		
 		//get payment info
 		$userSQL = "SELECT U.NAME, H.* FROM USERS U JOIN HOMEOWNER H ON U.ID = H.ID WHERE U.ID = '".$userID."'";
