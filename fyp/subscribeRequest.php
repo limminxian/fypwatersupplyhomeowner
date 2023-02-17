@@ -55,9 +55,9 @@ if( !empty($_POST['userID']) &&
 		$insertSubscribeSQL = "INSERT INTO SUBSCRIBE VALUES ('".$companyID."', '".$userID."', '".$date."', 'subscribe', '".$maxID."')";
 		
 		$dateNow = new DateTime();
-		$date = new DateTime($date);
+		$datetime = new DateTime($date);
 		
-		if($date > $dateNow){
+		if($datetime > $dateNow){
 			$dateResult = mysqli_query($connection, $dateSQL);
 			if(mysqli_num_rows($dateResult) == 0){
 				
