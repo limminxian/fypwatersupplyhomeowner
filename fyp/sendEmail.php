@@ -6,6 +6,9 @@ require  'phpmailer/src/Exception.php';
 require  'phpmailer/src/PHPMailer.php';
 require  'phpmailer/src/SMTP.php';
 
+$emailname = 'watersupply02@gmail.com';
+$passwordname = 'ughqjjdtgswonvuj';
+
 if( !empty($_POST['email']) &&
 	!empty($_POST['message'])){
 		
@@ -15,12 +18,12 @@ if( !empty($_POST['email']) &&
 		$mail->isSMTP();
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
-		$mail->Username = 'mairyuutube@gmail.com'; //gmail name
-		$mail->Password = 'vxpeyrhkihziwpew'; //gmail app password
+		$mail->Username = $emailname; //gmail name
+		$mail->Password = $passwordname; //gmail app password
 		$mail->SMTPSecure = 'ssl';
 		$mail->Port = 465;
 		
-		$mail->setFrom('mairyuutube@gmail.com');	//gmail name
+		$mail->setFrom($emailname);	//gmail name
 		
 		$mail->addAddress($_POST["email"]);
 		
