@@ -68,10 +68,16 @@ if (!empty($_POST['userID'])
 					$amount = $billsRow['AMOUNT'];
 					$payment = $billsRow['PAYMENT'];
 					$billingDate = $billsRow['BILLINGDATE'];
+					$billCompany = $billsRow['COMPANY'];
+
+					$SQL = "SELECT NAME FROM COMPANY WHERE ID = '".$billCompany."'";
+					$Result = mysqli_query($connection, $SQL);
+					$companyName = mysqli_fetch_row($Result)[0];
 
 					$service = array("ID" => $billID, 
 									 "amount" => $amount,
 									 "payment" => $payment,
+									 "companyName" => $companyName,
 									 "billingDate" => $billingDate);
 									 
 					$serviceBills[$serviceName] = $service;
